@@ -1,0 +1,9 @@
+<% if(locals.genres) {%>
+<% genres.data.forEach(genre => { %>
+<p><%= genre.name %></p>
+<% }) } else if (locals.years){ %>
+<% for(var i = 0; i< years.length;i++) { %>
+    <p><%= years[i] %></p>
+<% }} else{ %>
+    <p>category</p>
+<% } %>

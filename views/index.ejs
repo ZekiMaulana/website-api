@@ -1,1 +1,24 @@
-<h1> haiii</h1>
+<%- include("partials/headers.ejs") %>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-3 justify-content-center mx-5">
+<% content.data.forEach(anime => { %>
+
+    <%# anime.mal_id %>
+    <%# anime.score %>
+    <%# anime.synopsis %>
+<div class="col">
+    <div class="card shadow-sm" style="overflow: hidden;" >
+        <img src=<%= anime.images.jpg.large_image_url %> class="card-img-top" alt="..." >
+        <p class="card-text">
+            <%= anime.title_english %>
+            </p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href=><%= anime.aired.string %></a></button>
+          </div>
+          <small class="text-body-secondary">9 mins</small>
+        </div>
+      </div>
+    </div>
+  <% }); %>
+</div>
+<%- include("partials/footers.ejs") %>
