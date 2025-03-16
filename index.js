@@ -10,17 +10,8 @@ app.use(express.static("public"))
 
 app.get("/", async (req, res) => {
     try {
-        const params = { filter: "airing", limit: 24};
+        const params = { filter: "airing", limit: 21, type: "tv"};
         const result = await axios(API_URL + "top/anime", {params: params});
-        const data = []
-        
-        // for (var i = 0; i < result.data.length; i++){
-        //     const anime = {
-        //         title: result.data[i].title_english,
-        //         img: result.data[i].images.jpg.large_image_url
-        //     }
-
-        // }
         res.render("index.ejs", {content: result.data})
     } catch (error) {
         console.error("Failed to make request:", error.message);
@@ -29,8 +20,15 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/anime", async (req, res) => {
-    res.render("content.ejs")
-})
+    try {
+        const animeId = req.query.animeId;
+        const result = await axios.get(API_URL + "anime/" + animeId);
+        console.log(result.data.data.title_english);
+        res.render("content.ejs", {content: result.data})
+    } catch(error) {
+        res.render("content.ejs", { error: error.message })
+    }
+});
 
 app.get("/category", async (req, res) => {
     switch(req.query.type){
@@ -58,7 +56,12 @@ app.get("/category", async (req, res) => {
     res.render("category.ejs");
 });
 
-app.get("/search", async (req, res) => {
+app.post("/search", async (req, res) => {
+    try {
+        const params = {}
+    }catch(error) {
+        res.render("search.ejs", {error: error.message})
+    }
     res.render("search.ejs");
 })
 app.listen(port, () => {

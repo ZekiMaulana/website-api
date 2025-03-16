@@ -1,24 +1,60 @@
 <%- include("partials/headers.ejs") %>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-3 justify-content-center mx-5">
-<% content.data.forEach(anime => { %>
+
+<section class="main-content">
+  <% const ranNum = Math.floor(Math.random() * content.data.length) %> 
+
+  <div class="content-title">
+    <h1><%= content.data[ranNum].title %></h1>
+    <span><%= content.data[ranNum].aired.prop.from.day %>. 
+      <% var month = content.data[ranNum].aired.string.split(" ")[0] %>
+      <%= month %>, 
+      <%= content.data[ranNum].aired.prop.from.year %></span>
+    <div class="score">
+      <button class="score-button"><%= content.data[ranNum].score %></button>
+      <% const score = Math.floor(content.data[ranNum].score) %>
+      <p><% for(var i= 1; i<= 10; i++) { if(i <= score) { %><img src="/images/star.svg" height="30px"><% } else { %><img src="/images/star-blank.svg" height="30px"><% }} %><br>
+        <img src="/images/profile.svg" height="20px"> <%= content.data[ranNum].scored_by %> Votes</p>
+    </div>
+    <b> <% content.data[ranNum].genres.forEach(genre => { %><%= genre.name %> | <%console.log(genre.name) }) %>
+      <% content.data[ranNum].explicit_genres.forEach(genre => { %><%= genre.name %> | <%console.log(genre.name) }) %>
+      <% content.data[ranNum].themes.forEach(genre => { %><%= genre.name %> | <%console.log(genre.name) }) %>
+      <% content.data[ranNum].demographics.forEach(genre => { %><%= genre.name %> | <%console.log(genre.name) }) %></b>
+    <p><%= content.data[ranNum].synopsis.slice(0, 240) %>...<br><a href="">Continue reading</a></p>
+  </div>
+
+  <div class="content-video">
+      <% if(content.data[ranNum].trailer.embed_url === null){ %>
+        <div style="text-align: center;">
+          <img class="card" src=<%= content.data[ranNum].images.jpg.large_image_url %>>
+          <h1>Video Content not Found</h1>
+        </div>
+          
+        <% } else { %>
+        <iframe class="card video-box" src=<%= content.data[ranNum].trailer.embed_url %>></iframe>
+      <% } %>
+  </div>
+  
+  <div class="text-title">text title</div>
+  
+  <% content.data.forEach(anime => { %>
+    <div class="card-film">
+      <img class="card" src=<%= anime.images.jpg.large_image_url %> height="310px">
+      <h5><%= anime.title %> (<%= anime.year %>)</h5>
+      <p><%= anime.aired.prop.from.day %> <% var month = anime.aired.string.split(" ")[0] %><%= month %> <%= anime.aired.prop.from.year %></p>
+    </div>
+   <% }); %>
+
+   <hr />
+  
+</section>
+<%# content.data.forEach(anime => { %>
 
     <%# anime.mal_id %>
     <%# anime.score %>
     <%# anime.synopsis %>
-<div class="col">
-    <div class="card shadow-sm" style="overflow: hidden;" >
-        <img src=<%= anime.images.jpg.large_image_url %> class="card-img-top" alt="..." >
-        <p class="card-text">
-            <%= anime.title_english %>
-            </p>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary"><a href=><%= anime.aired.string %></a></button>
-          </div>
-          <small class="text-body-secondary">9 mins</small>
-        </div>
-      </div>
-    </div>
-  <% }); %>
-</div>
+    <%# anime.aired.string %>
+    <%# anime.images.jpg.large_image_url %>
+    <%# anime.title_english %>
+
+  <%# }); %>
 <%- include("partials/footers.ejs") %>

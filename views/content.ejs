@@ -1,0 +1,20 @@
+<%- include("partials/headers.ejs") %>
+
+<img src=<%= content.data.images.jpg.large_image_url %>>
+    <p><%= content.data.title_english %> (<%= content.data.year %>)</p>
+    <p><%= content.data.aired.string %></p>
+    <p><%= content.data.score %></p>
+    <p><%= content.data.rating %></p>
+    <p><%= content.data.synopsis %></p>
+    <p><%= content.data.type %></p>
+    <p><%= content.data.source %></p>
+    <p><%= content.data.episodes %></p>
+    <p><%= content.data.status %></p>
+
+
+
+      <iframe width="1840px" height="1000px"
+      src=<%= content.data.trailer.embed_url %>>
+        </iframe>
+
+<%- include("partials/footers.ejs") %>

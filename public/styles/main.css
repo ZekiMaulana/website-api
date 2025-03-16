@@ -1,10 +1,175 @@
 body {
-    background-color: #F6F4F7;
+    background-color: #ECE3F8;
+    padding: 0;
+    margin: 0;
+    font-family: "Domine", serif;
 }
 
-.container-content {
-    margin: 0 5%;
-    
-    font-size: 20px;
+.main-container {
+    width: 1800px;
+    margin: auto;
+    padding: 0;
 }
- 
+
+.headers {
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    background-color: aqua;
+    justify-content: space-between;
+}
+
+.headers ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    
+}
+
+.headers li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+}
+
+
+.headers li a:hover:not(.active) {
+    background-color: antiquewhite;
+    color: #333;
+  }
+
+  .active {
+    background-color: teal;
+    color: #333;
+  }
+
+.headers .left {
+    display: flex;
+}
+
+.headers .right {
+    padding: 8px 25px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+.search {
+    padding: 10px 25px; 
+    
+    background-image: url('/images/cash-stack.svg');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+
+    border: none;
+    border-bottom: 2px solid #333;
+
+    width: 50%;
+    transition: width 0.4s ease-in-out;
+}
+
+.search:focus {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.main-content {
+    display: grid;
+    width: 95%;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 50px;
+    column-gap: 10px;
+    row-gap: 20px;
+}
+
+.content-title {
+    grid-column: span 3;
+    text-align: left;
+    overflow-wrap: break-word;
+    margin: 0px 50px;
+}
+
+.content-title h1{
+    font-size: 4rem;
+}
+
+.content-title span {
+    font-size: 0.75rem;
+}
+.content-title .score {
+    display: flex;
+    margin: 20px 0px;
+    gap: 20px;
+}
+.content-title button{
+    padding: 0px 15px;
+    background-color: #2D3284;
+    color: #F6F4F7;
+    font-size: 1.5rem;
+    border: 0px solid;
+    border-radius: 5px;
+}
+.content-title p {
+    font-size: 1rem;
+}
+.content-video {
+    grid-column: 4 / span 4;
+    text-align: right;
+}
+
+.video-box {
+    height: 680px;
+    width: 95%;
+}
+
+.card {
+    border: 2px solid grey;
+    border-radius: 10px ;
+}
+
+.text-title {
+    grid-column: span 7;
+    background-color: cornflowerblue;
+}
+
+.title-featured {
+    border: none;
+    border-left: 5px solid red;
+    padding: 10px;
+}
+
+.card-film {
+    background-color: springgreen;
+}
+
+
+@media (max-width: 1600px) {
+
+    .main-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: blueviolet;
+        
+    }
+
+   
+}
