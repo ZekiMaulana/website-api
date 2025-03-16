@@ -16,7 +16,7 @@
       <p><% for(var i= 1; i<= 10; i++) { if(i <= score) { %><img src="/images/star.svg" height="30px"><% } else { %><img src="/images/star-blank.svg" height="30px"><% }} %><br>
         <img src="/images/profile.svg" height="20px"> <%= topAired[ranNum].scored_by %> Votes</p>
     </div>
-    <b> <% topAired[ranNum].genres.forEach(genre => { %><%= genre.name %> | <% }) %>
+    <b>| <% topAired[ranNum].genres.forEach(genre => { %><%= genre.name %> | <% }) %>
       <% topAired[ranNum].explicit_genres.forEach(genre => { %><%= genre.name %> | <% }) %>
       <% topAired[ranNum].themes.forEach(genre => { %><%= genre.name %> | <% }) %>
       <% topAired[ranNum].demographics.forEach(genre => { %><%= genre.name %> | <% }) %></b>
@@ -38,7 +38,9 @@
   <div class="text-title title-featured"><h2>Featured</h2></div>
   
   <% topAired.forEach(anime => { %>
+
     <div class="card-film">
+      <a href="" style="color: black;">
       <div class="card-img">
       <img class="card" src=<%= anime.images.jpg.large_image_url %> width="98%" height="325px">
       <div class="text1">Featured</div>
@@ -47,6 +49,7 @@
       </div>
       <% var title_name = anime.title + " (" + anime.year + ")" %>
       <h4><%= title_name.slice(0, 26) %></h4>
+      </a>
       <p><%= anime.aired.prop.from.day %> <% var month = anime.aired.string.split(" ")[0] %><%= month %> <%= anime.aired.prop.from.year %></p>
     </div>
    <% }); %>

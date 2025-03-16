@@ -91,6 +91,8 @@ body {
     border-bottom: 2px solid white;
 }
 
+/* CSS Main content section */
+
 .main-content {
     display: grid;
     width: 95%;
@@ -113,6 +115,7 @@ body {
 
 .content-title span {
     font-size: 0.75rem;
+    color: #455078;
 }
 .content-title .score {
     display: flex;
@@ -224,16 +227,41 @@ a {
     color: #455078;
 }
 
-.card-film h4{
+h4{
     font-size: 16px;
     font-weight: bold;
 }
 
-.main-content .line {
+.line {
     grid-column: span 7;
     color: #455078;
 }
 
+/* CSS footer */
+.footer {
+    display: grid;
+    width: 95%;
+    grid-template-columns: 50% 1fr 1fr 1fr;
+    padding: 0 50px;
+    column-gap: 10px;
+    row-gap: 20px;
+}
+.web-desc{
+    width: 50%;
+}
+
+.footer a{
+    display: flex;
+    flex-direction: column;
+    color: #774473;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.footer p {
+    font-size: 13px;
+    color: #455078;
+}
 
 @media (max-width: 1600px) {
 

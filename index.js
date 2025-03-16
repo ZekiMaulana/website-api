@@ -10,9 +10,15 @@ app.use(express.static("public"))
 
 app.get("/", async (req, res) => {
     try {
-        const params = { filter: "airing", limit: 21, type: "tv"};
-        const result = await axios(API_URL + "top/anime", {params: params});
-        res.render("index.ejs", {content: result.data})
+        const paramsTopAired = { filter: "airing", limit: 21, type: "tv"};
+        const resultTopAired = await axios(API_URL + "top/anime", {params: paramsTopAired});
+
+        const paramsGenres = { filter: "genres"};
+        const resultGenres = await axios(API_URL + "genres/anime", {params: paramsGenres});
+
+        const resultChar = await axios(API_URL + "top/characters");
+
+        res.render("index.ejs", {content: resultTopAired.data, category: resultGenres.data, characters: resultChar.data})
     } catch (error) {
         console.error("Failed to make request:", error.message);
         res.render("index.ejs", { error: error.message });

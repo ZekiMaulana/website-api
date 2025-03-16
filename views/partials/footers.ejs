@@ -1,3 +1,32 @@
+<section class="footer">
+    <div class="web-desc">
+        <h2>LOGO</h2> 
+        <p>Description about this website and information </p>
+    </div>
+    <div> 
+        <h4>Top Character</h4>
+        <% for(var i = 0; i <= 6; i++){ %> 
+            <a href=""><%= characters.data[i].name %></a>
+        <% } %>
+    </div>
+    <div>
+        <h4>Category</h4>
+        <% for(var i = 1; i <= 8; i++){ %> 
+            <a href=""><%= category.data[i].name %></a>
+        <% } %>
+    </div>
+        
+    <div>
+        <h4>Source Information</h4>
+        
+        <a href="https://jikan.moe/">JIKAN API</a>
+        
+    </div>
+
+    <div class="line"><hr /></div>
+    <div class=""><p>Copyright © 2025 by Zeki. All Rights Reserved.</p></div>
+</section>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </main>
