@@ -263,6 +263,30 @@ h4{
     color: #455078;
 }
 
+/* Css Category */
+
+.category {
+    display: grid;
+    width: 95%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 20px;
+    padding: 50px 50px;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.category-type {
+    grid-column: span 4;
+}
+
+.content-category {
+    padding: 15px;
+    font-size: 20px;
+    background-color: #2D3284;
+    color: #F6F4F7;
+    border: 0px solid;
+    border-radius: 10px;
+}
 @media (max-width: 1600px) {
 
     .main-container {

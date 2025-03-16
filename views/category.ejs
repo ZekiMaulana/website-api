@@ -1,11 +1,61 @@
+<%- include("partials/headers.ejs") %>
+
+<div class="category">
+    <% if(locals.categoryE) {%>
+        <div class="category-type title-featured"><h2>Genre</h2></div>
+        <div class="category-type"><hr /></div>
+
+        <% category.data.forEach(genre => { %>
+            <a href="" style="color: #F6F4F7;">
+        <div class="content-category"><%= genre.name %></div>
+                </a>
+        <% }) %>
+
+        <div class="category-type title-featured"><h2>Explicit Genre</h2></div>
+        <div class="category-type"><hr /></div>
+
+        <% categoryE.data.forEach(genre => { %>
+            <a href="" style="color: #F6F4F7;">
+        <div class="content-category"><%= genre.name %></div>
+            </a>
+        <% }) %>
+        
+
+    <% } else if (locals.years){ %>
+        <div class="category-type title-featured"><h2>Release / Year</h2></div>
+        <div class="category-type"><hr /></div>
+
+        <% for(var i = 0; i<=45;i++) { %>
+
+            <div class="content-category"><%= years.data[i].year %></div>
+
+        <% }} else{ %>
+            <p>category</p>
+        <% } %>
+        <div class="category-type"><hr /></div>
+    
+</div>
+
+<%- include("partials/footers.ejs") %>
 
 
-<% if(locals.genres) {%>
-<% genres.data.forEach(genre => { %>
-<p><%= genre.name %></p>
-<% }) } else if (locals.years){ %>
-<% for(var i = 0; i< years.length;i++) { %>
-    <p><%= years[i] %></p>
-<% }} else{ %>
-    <p>category</p>
-<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

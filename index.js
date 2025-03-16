@@ -8,6 +8,9 @@ const API_URL = "https://api.jikan.moe/v4/"
 
 app.use(express.static("public"))
 
+
+
+
 app.get("/", async (req, res) => {
     try {
         const paramsTopAired = { filter: "airing", limit: 21, type: "tv"};
@@ -16,9 +19,11 @@ app.get("/", async (req, res) => {
         const paramsGenres = { filter: "genres"};
         const resultGenres = await axios(API_URL + "genres/anime", {params: paramsGenres});
 
-        const resultChar = await axios(API_URL + "top/characters");
 
-        res.render("index.ejs", {content: resultTopAired.data, category: resultGenres.data, characters: resultChar.data})
+        const resultChar = await axios(API_URL + "top/characters");
+        
+
+        res.render("index.ejs", {content: resultTopAired.data, category: resultGenres.data, characters: resultChar.data});
     } catch (error) {
         console.error("Failed to make request:", error.message);
         res.render("index.ejs", { error: error.message });
@@ -40,26 +45,36 @@ app.get("/category", async (req, res) => {
     switch(req.query.type){
         case "genre":
             try {
+                const resultChar = await axios(API_URL + "top/characters");
+
                 const params = { filter: "genres"};
                 const result = await axios(API_URL + "genres/anime", {params: params});
+
+                const paramsE = { filter: "explicit_genres"};
+                const resultE = await axios(API_URL + "genres/anime", {params: paramsE});
                 
-                res.render("category.ejs", {genres: result.data})
+                res.render("category.ejs", {category: result.data, characters: resultChar.data, categoryE: resultE.data});
             }catch (error) {
                 console.error("Failed to make request:", error.message);
                 res.render("category.ejs", { error: error.message });
             }
             break;
         case "release-year":
-            const result = [];
-            for(var i = 1980; i < 2026; i++){ result.push(i)};
-            console.log(result)
-            
-            res.render("category.ejs", {years: result})
+            try {
+                const resultChar = await axios(API_URL + "top/characters");
+                const result = await axios(API_URL + "seasons");
+                const params = { filter: "genres"};
+                const resultGenres = await axios(API_URL + "genres/anime", {params: params});
+                
+                res.render("category.ejs", {years: result.data, category: resultGenres.data, characters: resultChar.data})
+            } catch(error) {
+                console.error("Failed to make request:", error.message);
+                res.render("category.ejs", { error: error.message });
+            }
             break;
         default:
             break;
     }
-    res.render("category.ejs");
 });
 
 app.post("/search", async (req, res) => {
