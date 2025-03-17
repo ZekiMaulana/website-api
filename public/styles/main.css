@@ -113,16 +113,16 @@ body {
     font-size: 4rem;
 }
 
-.content-title span {
+span {
     font-size: 0.75rem;
     color: #455078;
 }
-.content-title .score {
+.score {
     display: flex;
     margin: 20px 0px;
     gap: 20px;
 }
-.content-title button{
+.score-button{
     padding: 0px 15px;
     background-color: #2D3284;
     color: #F6F4F7;
@@ -156,6 +156,10 @@ body {
 a {
     text-decoration: none;
     color: #455078;
+}
+
+a:hover {
+    color: #774473;
 }
 
 .title-featured {
@@ -236,6 +240,19 @@ h4{
     grid-column: span 7;
     color: #455078;
 }
+.button-featured {
+    font-size: 0.8rem; 
+    padding: 10px; 
+    background-color: #774473; 
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    right: 50px;
+}
+
+.button-featured:hover{
+    background-color: rgb(39, 56, 90, 1); /* Black w/opacity/see-through */
+}
 
 /* CSS footer */
 .footer {
@@ -286,6 +303,87 @@ h4{
     color: #F6F4F7;
     border: 0px solid;
     border-radius: 10px;
+}
+
+/* CSS Page View */
+.view-content {
+    display: grid;
+    width: 95%;
+    grid-template-columns: 18% 32% 44%;
+    padding: 50px;
+    column-gap: 50px;
+    row-gap: 20px;
+}
+
+.view-content .video {
+    grid-column: span 3;
+    text-align: center;
+}
+
+.view-content .cover img{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    object-fit: cover;
+}
+
+.cover-rating .rating, .episodes .rating{
+    font-size: 0.8rem;
+    color: #455078;
+}
+
+.view-content .cover-desc {
+    right: 0;
+    width: 80%;
+    align-content: center;
+}
+
+.episodes {
+    display: grid;
+    width: 95%;
+    grid-template-columns: 1fr;
+    border: 0px solid;
+    padding: 50px;
+}
+
+.episodes .head {
+    width: 50%;
+}
+
+.episodes .table {
+    display: grid;
+    width: 50%;
+    grid-template-columns: 0.5fr 5fr 1fr;
+    height: 350px;
+    overflow: scroll;
+}
+.episodes .block {
+    padding: 20px;
+}
+
+.episodes .color {
+    background-color: #774473;
+    color: #F6F4F7;
+}
+
+.episodes .color1 {
+    padding-top: 10px;
+    color: white;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgb(39, 56, 90, 1); /* Black w/opacity/see-through */
+}
+
+.episodes .color2 {
+    
+    padding-top: 10px;
+    color: #F6F4F7;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgb(39, 56, 90, 0.4); /* Black w/opacity/see-through */
+}
+
+
+.episodes .poin {
+    text-align: center;
 }
 @media (max-width: 1600px) {
 

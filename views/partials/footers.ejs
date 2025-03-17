@@ -4,27 +4,37 @@
         <p>Description about this website and information </p>
     </div>
     <div> 
+        <% if(locals.characters){ %>
         <h4>Top Character</h4>
         <% for(var i = 0; i <= 6; i++){ %> 
             <a href=""><%= characters.data[i].name %></a>
         <% } %>
     </div>
+    <% } %>
+    
     <div>
         <h4>Category</h4>
-        <% for(var i = 1; i <= 8; i++){ %> 
-            <a href=""><%= category.data[i].name %></a>
-        <% } %>
+            <a href="">Action</a>
+            <a href="">Adventure</a>
+            <a href="">Drama</a>
+            <a href="">Fantasy</a>
+            <a href="">Romance</a>
+            <a href="">Horror</a>
+            <a href="">Sci-Fi</a>
+            <a href="">Slice of Life</a>
+            <a href="">Sports</a>
     </div>
 
     <div>
         <h4>Source Information</h4>
-        
+        <a href="https://myanimelist.net/">MyAnimeList</a>
         <a href="https://jikan.moe/">JIKAN API</a>
+        
         
     </div>
 
     <div class="line"><hr /></div>
-    <div class=""><p>Copyright © 2025 by Zeki. All Rights Reserved.</p></div>
+    <div class="copyright"><p>Copyright © 2025 by Zeki. All Rights Reserved.</p></div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 

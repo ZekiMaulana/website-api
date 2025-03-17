@@ -1,20 +1,82 @@
 <%- include("partials/headers.ejs") %>
 
-<img src=<%= content.data.images.jpg.large_image_url %>>
-    <p><%= content.data.title_english %> (<%= content.data.year %>)</p>
-    <p><%= content.data.aired.string %></p>
-    <p><%= content.data.score %></p>
-    <p><%= content.data.rating %></p>
-    <p><%= content.data.synopsis %></p>
-    <p><%= content.data.type %></p>
-    <p><%= content.data.source %></p>
-    <p><%= content.data.episodes %></p>
-    <p><%= content.data.status %></p>
+<% const topAired = content.data %>
+<% const animeEp = episodes.data %>
+
+<section class="view-content">
+  <div class="video">
+    <iframe class="card" width="95%" height="800px" src=<%= topAired.trailer.embed_url %>></iframe>
+  </div>
+
+  <div class="cover">
+    <img class="card" src=<%= topAired.images.jpg.large_image_url %>>
+  </div>
+
+  <div class="cover-rating">
+    <h1><%= topAired.title %></h1>
+    <span><%= topAired.aired.prop.from.day %>. 
+      <% var month = topAired.aired.string.split(" ")[0] %>
+      <%= month %>, 
+      <%= topAired.aired.prop.from.year %></span>
+    <div class="score">
+      <button class="score-button"><%= topAired.score %></button>
+      <% const score = Math.floor(topAired.score) %>
+      <p><% for(var i= 1; i<= 10; i++) { if(i <= score) { %><img src="/images/star.svg" height="30px"><% } else { %><img src="/images/star-blank.svg" height="30px"><% }} %><br>
+        <img src="/images/profile.svg" height="20px"> <%= topAired.scored_by %> Votes</p>
+    </div>
+    <p class="rating"><%= topAired.rating %>         </p>
+    <p class="rating"><%= topAired.status %>  (<%= topAired.type %>)  ||  <%= topAired.episodes %> episodes  ||  <%= topAired.duration %></p>
+    <b>| <% topAired.genres.forEach(genre => { %><%= genre.name %> | <% }) %>
+      <% topAired.explicit_genres.forEach(genre => { %><%= genre.name %> | <% }) %>
+      <% topAired.themes.forEach(genre => { %><%= genre.name %> | <% }) %>
+      <% topAired.demographics.forEach(genre => { %><%= genre.name %> | <% }) %></b>
+
+    <% topAired.relations.forEach(anime => { %>
+      <% if(anime.relation === "Prequel") { %>
+        <p><color class="rating" style="color: black;">Prequel :</color>
+        <% anime.entry.forEach(prequel => { %>
+        <a href="/anime?animeId=<%= prequel.mal_id %>"><%= prequel.name  %></a></p>
+        <% }) %>
+      <% } if(anime.relation === "Sequel") {%>
+        <p><color class="rating" style="color: black;">Sequel : </color>
+        <% anime.entry.forEach(sequel => { %>
+        <a href="/anime?animeId=<%= sequel.mal_id %>"><%= sequel.name  %></a></p>
+        <% }) %>
+        <% } %>
+    <% }) %>
+  </div>
+
+  <div class="cover-desc">
+    <h4>Synopsis</h4><p><%= topAired.synopsis %></p>
+  </div>
+</section>
+
+<section class="episodes">
+  <% if (topAired.episodes > 1){ %>
+  <div class="head title-featured"><h2>Info Episodes</h2></div>
+  <div class="head"><hr /></div>
+  
+  <div class="table">
+  <div class="block color">Episodes</div>
+  <div class="block color">Title</div>
+  <div class="block color poin">Score</div>
+  <% animeEp.forEach(episode => {%> 
+    <% if (episode.mal_id % 2 !== 0){ %>
+  <div class="color1 poin"><%= episode.mal_id %></div>
+  <div class="color1"><%= episode.title %><p class="rating" style="color: white;"><%= episode.aired.split("T")[0] %></p></div>
+  <div class="color1 poin"><img src="/images/star-white.svg" height="20px"> <%= episode.score %></div>
+    <% } else { %>
+  <div class="color2 poin"><%= episode.mal_id %></div>
+  <div class="color2"><%= episode.title %><p class="rating" style="color: white;"><%= episode.aired.split("T")[0] %></p></div>
+  <div class="color2 poin"><img src="/images/star-white.svg" height="20px"> <%= episode.score %></div>
+    <% } %>
+  <% }) %>
+  </div>
+  <% } %>
+  
+<div ><hr /></div>
+</section>
 
 
-
-      <iframe width="1840px" height="1000px"
-      src=<%= content.data.trailer.embed_url %>>
-        </iframe>
 
 <%- include("partials/footers.ejs") %>

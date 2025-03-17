@@ -6,7 +6,7 @@
         <div class="category-type"><hr /></div>
 
         <% category.data.forEach(genre => { %>
-            <a href="" style="color: #F6F4F7;">
+            <a href="/search/genres?genreId=<%= genre.mal_id %>" style="color: #F6F4F7;">
         <div class="content-category"><%= genre.name %></div>
                 </a>
         <% }) %>
@@ -15,7 +15,7 @@
         <div class="category-type"><hr /></div>
 
         <% categoryE.data.forEach(genre => { %>
-            <a href="" style="color: #F6F4F7;">
+            <a href="/search/genres?genreId=<%= genre.mal_id %>" style="color: #F6F4F7;">
         <div class="content-category"><%= genre.name %></div>
             </a>
         <% }) %>
@@ -33,7 +33,6 @@
             <p>category</p>
         <% } %>
         <div class="category-type"><hr /></div>
-    
 </div>
 
 <%- include("partials/footers.ejs") %>

@@ -3,6 +3,10 @@
 <section class="main-content">
   <% const ranNum = Math.floor(Math.random() * content.data.length) %>
   <% const topAired = content.data %>
+  
+  <% const topAiredMovie = movie.data %>
+  <% const topAnime = top.data %>
+  <% const topUpcoming = upcoming.data %>
 
   <div class="content-title">
     <h1><%= topAired[ranNum].title %></h1>
@@ -20,7 +24,7 @@
       <% topAired[ranNum].explicit_genres.forEach(genre => { %><%= genre.name %> | <% }) %>
       <% topAired[ranNum].themes.forEach(genre => { %><%= genre.name %> | <% }) %>
       <% topAired[ranNum].demographics.forEach(genre => { %><%= genre.name %> | <% }) %></b>
-    <p><%= topAired[ranNum].synopsis.slice(0, 240) %>...<br><a href="">Continue reading</a></p>
+    <p><%= topAired[ranNum].synopsis.slice(0, 240) %>...<br><a href="/anime?animeId=<%= topAired[ranNum].mal_id %>">Continue reading</a></p>
   </div>
 
   <div class="content-video">
@@ -37,33 +41,103 @@
   
   <div class="text-title title-featured"><h2>Featured</h2></div>
   
-  <% topAired.forEach(anime => { %>
-
+  <%var b=21; var title = ""; for(var i=0; i<b; i++){ %>
+    <% if(topAired[i].title !== title){%>
     <div class="card-film">
-      <a href="" style="color: black;">
+      <a href="/anime?animeId=<%= topAired[i].mal_id %>" style="color: black;">
       <div class="card-img">
-      <img class="card" src=<%= anime.images.jpg.large_image_url %> width="98%" height="325px">
+      <img class="card" src=<%= topAired[i].images.jpg.large_image_url %> width="98%" height="325px">
       <div class="text1">Featured</div>
-      <div class="centered"><%= anime.synopsis.slice(0,300) %>....</div>
-      <div class="text2">✩ <%= anime.score %></div>
+      <div class="centered"><%= topAired[i].synopsis.slice(0,300) %>....</div>
+      <div class="text2">✩ <%= topAired[i].score %></div>
       </div>
-      <% var title_name = anime.title + " (" + anime.year + ")" %>
+      <% var title_name = topAired[i].title + " (" + topAired[i].aired.string.split(" ")[2] + ")" %>
       <h4><%= title_name.slice(0, 26) %></h4>
       </a>
-      <p><%= anime.aired.prop.from.day %> <% var month = anime.aired.string.split(" ")[0] %><%= month %> <%= anime.aired.prop.from.year %></p>
+      <p><%= topAired[i].aired.prop.from.day %> <% var month = topAired[i].aired.string.split(" ")[0] %><%= month %> <%= topAired[i].aired.prop.from.year %></p>
     </div>
-   <% }); %>
-   <div class="line"><hr /></div>
+    <% } else { b++ } title = topAired[i].title; %>
+   <% } %>
+   <div class="text-title"><hr /></div>
+
+   <div class="text-title title-featured"><h2>Movie</h2></div>
   
+   <% var b=7;  var title = ""; for(var i=0; i<b; i++){ %>
+    <% if(topAiredMovie[i].title !== title){%>
+
+    <div class="card-film">
+      <a href="/anime?animeId=<%= topAiredMovie[i].mal_id %>" style="color: black;">
+      <div class="card-img">
+      <img class="card" src=<%= topAiredMovie[i].images.jpg.large_image_url %> width="98%" height="325px">
+      <div class="text1">Featured</div>
+      <div class="centered"><%= topAiredMovie[i].synopsis.slice(0,300) %>....</div>
+      <div class="text2">✩ <%= topAiredMovie[i].score %></div>
+      </div>
+      <% var title_name = topAiredMovie[i].title + " (" + topAired[i].aired.string.split(" ")[2] + ")" %>
+      <h4><%= title_name.slice(0, 26) %></h4>
+      </a>
+      <p><%= topAiredMovie[i].aired.prop.from.day %> <% var month = topAiredMovie[i].aired.string.split(" ")[0] %><%= month %> <%= topAiredMovie[i].aired.prop.from.year %></p>
+    </div>
+    <% } else { b++ } title = topAiredMovie[i].title; %>
+   <% } %>
+   <div class="text-title" style="text-align: right;">
+    <a href="/search?type=topMovie"><button class="button-featured">see all</button></a>
+    </div>
+    
+   <div class="text-title"><hr /></div>
+
+   <div class="text-title title-featured"><h2>Top Anime</h2></div>
+
+  
+   <% var b=7;  var title = ""; for(var i=0; i<b; i++){ %>
+    <% if(topAnime[i].title !== title){%>
+
+    <div class="card-film">
+      <a href="/anime?animeId=<%= topAnime[i].mal_id %>" style="color: black;">
+      <div class="card-img">
+      <img class="card" src=<%= topAnime[i].images.jpg.large_image_url %> width="98%" height="325px">
+      <div class="text1">Featured</div>
+      <div class="centered"><%= topAnime[i].synopsis.slice(0,300) %>....</div>
+      <div class="text2">✩ <%= topAnime[i].score %></div>
+      </div>
+      <% var title_name = topAnime[i].title + " (" + topAired[i].aired.string.split(" ")[2] + ")" %>
+      <h4><%= title_name.slice(0, 26) %></h4>
+      </a>
+      <p><%= topAnime[i].aired.prop.from.day %> <% var month = topAnime[i].aired.string.split(" ")[0] %><%= month %> <%= topAnime[i].aired.prop.from.year %></p>
+    </div>
+    <% } else { b++ } title = topAnime[i].title; %>
+   <% } %>
+   <div class="text-title" style="text-align: right;">
+    <a href="/search?type=topAnime"><button class="button-featured">see all</button></a>
+    </div>
+    
+    <div class="text-title"><hr /></div>
+
+    <div class="text-title title-featured"><h2>Upcoming</h2></div>
+
+  
+    <% var b=7;  var title = ""; for(var i=0; i<b; i++){ %>
+      <% if(topUpcoming[i].title !== title){%>
+
+    <div class="card-film">
+      <a href="/anime?animeId=<%= topUpcoming[i].mal_id %>" style="color: black;">
+      <div class="card-img">
+      <img class="card" src=<%= topUpcoming[i].images.jpg.large_image_url %> width="98%" height="325px">
+      <div class="text1">Featured</div>
+      <div class="centered"><%= topUpcoming[i].synopsis.slice(0,300) %>....</div>
+      <div class="text2">✩ <%= topUpcoming[i].score %></div>
+      </div>
+      <% var title_name = topUpcoming[i].title + " (" + topUpcoming[i].aired.string.split(" ")[2] + ")" %>
+      <h4><%= title_name.slice(0, 26) %></h4>
+      </a>
+      <p><%= topUpcoming[i].aired.prop.from.day %> <% var month = topUpcoming[i].aired.string.split(" ")[0] %><%= month %> <%= topUpcoming[i].aired.prop.from.year %></p>
+    </div>
+    <% } else { b++ } title = topUpcoming[i].title; %>
+   <% } %>
+   <div class="text-title" style="text-align: right;">
+    <a href="/search?type=topAnime"><button class="button-featured">see all</button></a>
+    </div>
+    
+    <div class="text-title"><hr /></div>
 </section>
-<%# topAired.forEach(anime => { %>
-
-    <%# anime.mal_id %>
-    <%# anime.score %>
-    <%# anime.synopsis %>
-    <%# anime.aired.string %>
-    <%# anime.images.jpg.large_image_url %>
-    <%# anime.title_english %>
-
-  <%# }); %>
 <%- include("partials/footers.ejs") %>
