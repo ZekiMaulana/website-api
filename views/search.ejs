@@ -3,7 +3,7 @@
 <% const data = content.data %>
 <section class="main-content">
 
-    <div class="text-title title-featured"><h2>Featured</h2></div>
+    <div class="text-title title-featured"><h2><%= locals.nameGenre %> <%= locals.year %></h2></div>
   
     <% var title = ""; for(var i=0; i<data.length; i++){ %>
       <% if(data[i].title !== title){%>
@@ -12,7 +12,7 @@
         <div class="card-img">
         <img class="card" src=<%= data[i].images.jpg.large_image_url %> width="98%" height="325px">
         <div class="text1"><%= data[i].type %></div>
-        <div class="centered"><%= data[i].synopsis.slice(0,300) %>....</div>
+        <div class="centered"><%= data[i].synopsis %>....</div>
         <div class="text2">✩ <%= data[i].score %></div>
         </div>
         <% var title_name = data[i].title + " (" + data[i].aired.string.split(" ")[2] + ")" %>

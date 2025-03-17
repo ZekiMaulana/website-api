@@ -299,6 +299,8 @@ h4{
 .content-category {
     padding: 15px;
     font-size: 20px;
+    width: 100%;
+    text-align: left;
     background-color: #2D3284;
     color: #F6F4F7;
     border: 0px solid;

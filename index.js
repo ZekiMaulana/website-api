@@ -12,6 +12,7 @@ const port = 3000;
 const API_URL = "https://api.jikan.moe/v4/"
 
 app.use(express.static("public"))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 function saveJson(data, fileName){
     fs.writeFile(__dirname + "/public/dataJSON/"+ fileName +".json", JSON.stringify(data), (err) => {
@@ -111,6 +112,33 @@ app.get("/search/genres", async (req, res) => {
     }catch(error) {
         res.render("search.ejs", {error: error.message})
     }
+})
+
+app.post("/search", async(req, res) => {
+    try {
+        const genreId = req.body.genreId
+        console.log(req.body.genreId)
+        res.locals.nameGenre = req.body.name
+        res.locals.year = req.body.year
+        var start_date = ""
+        var end_date = ""
+        var genreX = 12
+        if (req.body.year){
+        start_date = req.body.year + "-01-01"
+        end_date = (req.body.year) + "-12-31"
+        console.log(end_date)
+        }
+        if (genreId == 12){
+            genreX = 0
+        }
+        const params = {order_by: "score", sort: "desc", genres: genreId, genres_exclude: genreX,  start_date: start_date, end_date: end_date, page: 2 }
+        const result = await axios.get(API_URL + "anime", {params: params})
+
+        res.render("search.ejs", {content: result.data, characters: resultChar})
+    }catch(error) {
+        res.render("search.ejs", {error: error.message})
+    }
+
 })
 app.listen(port, () => {
     console.log(`Server is running in port ${port}`);

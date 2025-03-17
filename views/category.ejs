@@ -1,23 +1,30 @@
 <%- include("partials/headers.ejs") %>
-
 <div class="category">
     <% if(locals.categoryE) {%>
         <div class="category-type title-featured"><h2>Genre</h2></div>
         <div class="category-type"><hr /></div>
 
         <% category.data.forEach(genre => { %>
-            <a href="/search/genres?genreId=<%= genre.mal_id %>" style="color: #F6F4F7;">
-        <div class="content-category"><%= genre.name %></div>
-                </a>
+        <div class="">
+            <form id="myForm" method="post">
+                <input type="text" name="genreId" hidden value=<%= genre.mal_id %>>
+                <input type="text" name="name" hidden value=<%= genre.name %>>
+                <input width="100%" class="content-category" id="get" type="submit" value="<%= genre.name %>" formaction="/search">
+            </form>
+        </div>
         <% }) %>
 
         <div class="category-type title-featured"><h2>Explicit Genre</h2></div>
         <div class="category-type"><hr /></div>
 
         <% categoryE.data.forEach(genre => { %>
-            <a href="/search/genres?genreId=<%= genre.mal_id %>" style="color: #F6F4F7;">
-        <div class="content-category"><%= genre.name %></div>
-            </a>
+            <div class="">
+                <form id="myForm" method="post">
+                    <input type="text" name="genreId" hidden value=<%= genre.mal_id %>>
+                    <input type="text" name="name" hidden value=<%= genre.name %>>
+                    <input width="100%" class="content-category" id="get" type="submit" value="<%= genre.name %>" formaction="/search">
+                </form>
+            </div>
         <% }) %>
         
 
@@ -26,8 +33,13 @@
         <div class="category-type"><hr /></div>
 
         <% for(var i = 0; i<=45;i++) { %>
-
-            <div class="content-category"><%= years.data[i].year %></div>
+            <div class="">
+                <form id="myForm" method="post">
+                    <input type="text" name="year" hidden value=<%= years.data[i].year %>>
+                    <input type="text" name="season" hidden value=<%= years.data[i].seasons %>>
+                    <input width="100%" class="content-category" id="get" type="submit" value=<%= years.data[i].year %> formaction="/search">
+                </form>
+            </div>
 
         <% }} else{ %>
             <p>category</p>
