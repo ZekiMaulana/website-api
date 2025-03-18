@@ -1,5 +1,8 @@
 #Project file
-/public/dataJSON/
+/public/dataJSON/topAiredMovie.json
+/public/dataJSON/topAiredTv.json
+/public/dataJSON/topAnime.json
+/public/dataJSON/topUpcoming.json
 
 
 # Logs

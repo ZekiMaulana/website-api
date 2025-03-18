@@ -5,8 +5,14 @@
 
 <section class="view-content">
   <div class="video">
-    <iframe class="card" width="95%" height="800px" src=<%= topAired.trailer.embed_url %>></iframe>
-  </div>
+    <% if(topAired.trailer.embed_url){ %>
+      <iframe class="card" width="95%" height="800px" src=<%= topAired.trailer.embed_url %>></iframe>
+    <% } else { %>
+      <h1>Videos not Found</h1>
+      <iframe class="card" src="https://www.youtube.com/"></iframe>
+      
+    <% } %>
+    </div>
 
   <div class="cover">
     <img class="card" src=<%= topAired.images.jpg.large_image_url %>>

@@ -2,11 +2,14 @@ body {
     background-color: #ECE3F8;
     padding: 0;
     margin: 0;
+}
+
+* {
     font-family: "Domine", serif;
 }
 
 .main-container {
-    width: 1800px;
+    width: 1700px;
     margin: auto;
     padding: 0;
 }
@@ -155,11 +158,11 @@ span {
 
 a {
     text-decoration: none;
-    color: #455078;
+    color: #774473;
 }
 
 a:hover {
-    color: #774473;
+    color: #455078;
 }
 
 .title-featured {
@@ -207,6 +210,7 @@ a:hover {
     font-size: 10px;
     top: 50%;
     left: 50%;
+    overflow: hidden;
     transform: translate(-50%, -50%);
   }
 
@@ -222,7 +226,6 @@ a:hover {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   }
-
 
 
 .card-film p{
@@ -248,11 +251,14 @@ h4{
     border: none; 
     border-radius: 10px; 
     right: 50px;
+    margin: 0px 20px;
 }
 
 .button-featured:hover{
     background-color: rgb(39, 56, 90, 1); /* Black w/opacity/see-through */
 }
+
+
 
 /* CSS footer */
 .footer {
@@ -273,6 +279,19 @@ h4{
     color: #774473;
     margin-bottom: 10px;
     font-size: 14px;
+}
+
+
+.footer-link{
+    color: #774473;
+    background-color: #ECE3F8;
+    border: 0px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.footer-link:hover, .footer a:hover{
+    color:#2D3284;
 }
 
 .footer p {

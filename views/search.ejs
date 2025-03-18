@@ -1,27 +1,50 @@
 <%- include ("partials/headers.ejs") %>
 
-<% const data = content.data %>
+<% const data1 = content1.data %>
+<% const data2 = content2.data %>
+
 <section class="main-content">
 
     <div class="text-title title-featured"><h2><%= locals.nameGenre %> <%= locals.year %></h2></div>
   
-    <% var title = ""; for(var i=0; i<data.length; i++){ %>
-      <% if(data[i].title !== title){%>
+    <% var title = ""; for(var i=0; i<data1.length; i++){ %>
+      <% if(data1[i].title !== title){%>
       <div class="card-film">
-        <a href="/anime?animeId=<%= data[i].mal_id %>" style="color: black;">
+        <a href="/anime?animeId=<%= data1[i].mal_id %>" style="color: black;">
         <div class="card-img">
-        <img class="card" src=<%= data[i].images.jpg.large_image_url %> width="98%" height="325px">
-        <div class="text1"><%= data[i].type %></div>
-        <div class="centered"><%= data[i].synopsis %>....</div>
-        <div class="text2">✩ <%= data[i].score %></div>
+          <img class="card" src=<%= data1[i].images.jpg.large_image_url %> width="98%" height="325px">
+          <div class="text1"><%= data1[i].type %></div>
+          <div class="centered"><%= data1[i].synopsis %>....</div>
+          <div class="text2">✩ <%= data1[i].score %></div>
         </div>
-        <% var title_name = data[i].title + " (" + data[i].aired.string.split(" ")[2] + ")" %>
-        <h4><%= title_name.slice(0, 26) %></h4>
+        <% var title_name = data1[i].title  %>
+        <h4><%= title_name %></h4>
         </a>
-        <p><%= data[i].aired.prop.from.day %> <% var month = data[i].aired.string.split(" ")[0] %><%= month %> <%= data[i].aired.prop.from.year %></p>
+        <p><%= data1[i].aired.prop.from.day %> <% var month = data1[i].aired.string.split(" ")[0] %><%= month %> <%= data1[i].aired.prop.from.year %></p>
       </div>
-      <% } title = data[i].title; %>
+      <% } title = data1[i].title; %>
      <% } %>
+
+     <% var title = ""; for(var i=0; i<data2.length; i++){ %>
+      <% if(data2[i].title !== title){%>
+      <div class="card-film">
+        <a href="/anime?animeId=<%= data2[i].mal_id %>" style="color: black;">
+        <div class="card-img">
+        <img class="card" src=<%= data2[i].images.jpg.large_image_url %> width="98%" height="325px">
+        <div class="text1"><%= data2[i].type %></div>
+        <div class="centered"><%= data2[i].synopsis %>....</div>
+        <div class="text2">✩ <%= data2[i].score %></div>
+        </div>
+        <% var title_name = data2[i].title  %>
+        <h4><%= title_name %></h4>
+        </a>
+        <p><%= data2[i].aired.prop.from.day %> <% var month = data2[i].aired.string.split(" ")[0] %><%= month %> <%= data2[i].aired.prop.from.year %></p>
+      </div>
+      <% } title = data2[i].title; %>
+     <% } %>
+     <div class="text-title" style="text-align: center;">
+        
+    </div>
      <div class="text-title"><hr /></div>
      
 </section>
