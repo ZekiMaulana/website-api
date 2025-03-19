@@ -40,16 +40,16 @@ app.get("/", async (req, res) => {
         // use public api
 
         const paramsTopAired = { filter: "airing", type: "tv"};
-        const resultTopAired = await axios(API_URL + "top/anime", {params: paramsTopAired});
+        const resultTopAired = await axios.get(API_URL + "top/anime", {params: paramsTopAired});
 
         const paramsTopAiredMovie = { type: "movie"};
-        const resultTopAiredMovie = await axios(API_URL + "top/anime", {params: paramsTopAiredMovie});
+        const resultTopAiredMovie = await axios.get(API_URL + "top/anime", {params: paramsTopAiredMovie});
 
         const paramsTopUpcoming = { filter: "upcoming"};
-        const resultTopUpcoming = await axios(API_URL + "top/anime", {params: paramsTopUpcoming});
+        const resultTopUpcoming = await axios.get(API_URL + "top/anime", {params: paramsTopUpcoming});
 
-        const paramsTopAnime = { };
-        const resultTopAnime = await axios(API_URL + "top/anime", {params: paramsTopAnime});
+        
+        const resultTopAnime = await axios.get(API_URL + "top/anime");
         
         res.render("index.ejs", {content: resultTopAired.data,  characters: resultChar, movie: resultTopAiredMovie.data, top: resultTopAnime.data, upcoming: resultTopUpcoming.data});
 
@@ -101,13 +101,89 @@ app.get("/category", async (req, res) => {
 
 
 
-app.get("/search/genres", async (req, res) => {
+app.get("/search/:anime", async (req, res) => {
     try {
-        const genreId = req.query.genreId
-        const params = {order_by: "score", sort: "desc", genres: genreId, page: 2 }
-        const result = await axios.get(API_URL + "anime", {params: params})
+        var result1 = {}
+        var result2 = {}
+        var params1 = {}
+        var params2 = {}
+        var start_date = ""
+        var end_date = ""
+        
+        res.locals.anime = req.params.anime
 
-        res.render("search.ejs", {content: result.data, characters: resultChar})
+        if(req.params.anime === "top"){
+            params1 = {
+                filter: req.query.filter, 
+                type: req.query.type,
+                page: 1,     
+            }
+            params2 = {
+                filter: req.query.filter, 
+                type: req.query.type,
+                page: 2,     
+            }
+
+            res.locals.filter = req.query.filter
+            
+            res.locals.type = req.query.type
+
+            res.locals.name = "Top Anime"
+            if(req.query.filter){
+                res.locals.name = "Top " + req.query.filter
+            }
+            
+            result1 = await axios.get(API_URL + "top/anime", {params: params1});
+            result2 = await axios.get(API_URL + "top/anime", {params: params2});
+
+            
+        } else if (req.params.anime === "category"){
+
+            if(req.query.year){
+                res.locals.year = req.query.year
+                start_date = req.query.year + "-01-01"
+                end_date = (req.query.year) + "-12-31"
+                console.log(end_date + " | " + start_date)
+            }
+
+            params1 = {
+                order_by: "start_date", 
+                sort: "desc", 
+                genres: req.query.genresId,
+                type: req.query.type,
+                start_date: start_date, 
+                end_date: end_date, 
+                page: 1,
+            }
+
+            params2 = {
+                order_by: "start_date", 
+                sort: "desc", 
+                genres: req.query.genresId,
+                type: req.query.type, 
+                start_date: start_date, 
+                end_date: end_date, 
+                page: 2,
+            }
+            
+            
+            
+            
+
+            res.locals.name = req.query.genresName
+            res.locals.genreId = req.query.genresId
+            res.locals.type = req.query.type
+
+            console.log(req.query.genresName)
+            console.log(req.query.genresId)
+
+            result1 = await axios.get(API_URL + "anime", {params: params1})
+            result2 = await axios.get(API_URL + "anime", {params: params2});
+        }
+
+        
+
+        res.render("search.ejs", {content1: result1.data, content2: result2.data, characters: resultChar})
     }catch(error) {
         res.render("error.ejs", {error: error.message})
     }
@@ -117,18 +193,16 @@ app.post("/search", async(req, res) => {
     try {
         var start_date = ""
         var end_date = ""
-        var genreX = 12
         var genreId = ""
         var page1 = 1
         var page2 = 2
-        var limit = 21
 
         if (req.body.genreId){
            genreId = req.body.genreId
-           res.locals.nameGenre = req.body.name
-           if (genreId == 12){
-            genreX = 0;
-            }
+           res.locals.name = req.body.name
+           
+           res.locals.genreId = genreId
+
            console.log("genreId = "+ genreId)
         }
 
@@ -147,35 +221,31 @@ app.post("/search", async(req, res) => {
         }
         
         const params1 = {
-            order_by: "score", 
+            order_by: "start_date", 
             sort: "desc", 
             genres: genreId, 
-            genres_exclude: genreX,  
             start_date: start_date, 
             end_date: end_date, 
-            page: page1, 
-            limit: limit }
+            page: page1 }
 
         const result1 = await axios.get(API_URL + "anime", {params: params1})
-
+        
         const params2 = {
-            order_by: "score", 
+            order_by: "start_date", 
             sort: "desc", 
             genres: genreId, 
-            genres_exclude: genreX,  
             start_date: start_date, 
             end_date: end_date, 
-            page: page2, 
-            limit: limit }
+            page: page2 }
 
         const result2 = await axios.get(API_URL + "anime", {params: params2})
+
+        res.locals.anime = "category"
 
         res.render("search.ejs", {content1: result1.data, content2: result2.data, characters: resultChar})
     }catch(error) {
         res.render("error.ejs", {error: error.message})
     }
-
-
 
 })
 app.listen(port, () => {

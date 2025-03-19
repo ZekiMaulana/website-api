@@ -50,6 +50,15 @@
       <div class="text1">Featured</div>
       <div class="centered"><%= topAired[i].synopsis %></div>
       <div class="text2">✩ <%= topAired[i].score %></div>
+      <% if(topAired[i].rating){ %><% var rating = topAired[i].rating.split(" ")[0]; %>
+      <% if(rating === "Rx"){ %>
+        <div class="text3" style="background-color: red;"><%= rating %></div>
+      <% } else if(rating === "R"){ %>
+        <div class="text3" style="background-color: orange;"><%= rating %></div>
+      <% } else { %>
+        <div class="text3" style="background-color: green;"><%= rating %></div>
+    <% }} %>
+
       </div>
       <% var title_name = topAired[i].title %>
       <h4><%= title_name %></h4>
@@ -58,6 +67,9 @@
     </div>
     <% } else { b++ } title = topAired[i].title; %>
    <% } %>
+   <div class="text-title" style="text-align: right;">
+    <a href="/search/top?filter=airing&type=tv"><button class="button-featured">see all</button></a>
+    </div>
    <div class="text-title"><hr /></div>
 
    <div class="text-title title-featured"><h2>Movie</h2></div>
@@ -72,6 +84,15 @@
       <div class="text1"><%= topAiredMovie[i].type %></div>
       <div class="centered"><%= topAiredMovie[i].synopsis %></div>
       <div class="text2">✩ <%= topAiredMovie[i].score %></div>
+      <% if(topAiredMovie[i].rating){ %><% var rating = topAiredMovie[i].rating.split(" ")[0]; %>
+      <% if(rating === "Rx"){ %>
+        <div class="text3" style="background-color: red;"><%= rating %></div>
+      <% } else if(rating === "R"){ %>
+        <div class="text3" style="background-color: orange;"><%= rating %></div>
+      <% } else { %>
+        <div class="text3" style="background-color: green;"><%= rating %></div>
+    <% }} %>
+
       </div>
       <% var title_name = topAiredMovie[i].title %>
       <h4><%= title_name %></h4>
@@ -81,7 +102,7 @@
     <% } else { b++ } title = topAiredMovie[i].title; %>
    <% } %>
    <div class="text-title" style="text-align: right;">
-    <a href="/search?type=topMovie"><button class="button-featured">see all</button></a>
+    <a href="/search/top?filter=movie"><button class="button-featured">see all</button></a>
     </div>
     
    <div class="text-title"><hr /></div>
@@ -99,6 +120,15 @@
       <div class="text1"><%= topAnime[i].type %></div>
       <div class="centered"><%= topAnime[i].synopsis %></div>
       <div class="text2">✩ <%= topAnime[i].score %></div>
+      <% if(topAnime[i].rating){ %><% var rating = topAnime[i].rating.split(" ")[0]; %>
+      <% if(rating === "Rx"){ %>
+        <div class="text3" style="background-color: red;"><%= rating %></div>
+      <% } else if(rating === "R"){ %>
+        <div class="text3" style="background-color: orange;"><%= rating %></div>
+      <% } else { %>
+        <div class="text3" style="background-color: green;"><%= rating %></div>
+    <% }} %>
+
       </div>
       <% var title_name = topAnime[i].title %>
       <h4><%= title_name %></h4>
@@ -108,7 +138,7 @@
     <% } else { b++ } title = topAnime[i].title; %>
    <% } %>
    <div class="text-title" style="text-align: right;">
-    <a href="/search?type=topAnime"><button class="button-featured">see all</button></a>
+    <a href="/search/top"><button class="button-featured">see all</button></a>
     </div>
     
     <div class="text-title"><hr /></div>
@@ -126,6 +156,14 @@
       <div class="text1"><%= topUpcoming[i].type %></div>
       <div class="centered"><%= topUpcoming[i].synopsis %></div>
       <div class="text2">✩ <%= topUpcoming[i].score %></div>
+      <% if(topUpcoming[i].rating){ %><% var rating = topUpcoming[i].rating.split(" ")[0]; %>
+      <% if(rating === "Rx"){ %>
+        <div class="text3" style="background-color: red;"><%= rating %></div>
+      <% } else if(rating === "R"){ %>
+        <div class="text3" style="background-color: orange;"><%= rating %></div>
+      <% } else { %>
+        <div class="text3" style="background-color: green;"><%= rating %></div>
+    <% }} %>
       </div>
       <% var title_name = topUpcoming[i].title %>
       <h4><%= title_name %></h4>
@@ -135,7 +173,7 @@
     <% } else { b++ } title = topUpcoming[i].title; %>
    <% } %>
    <div class="text-title" style="text-align: right;">
-    <a href="/search?type=topAnime"><button class="button-featured">see all</button></a>
+    <a href="/search/top?filter=upcoming"><button class="button-featured">see all</button></a>
     </div>
     
     <div class="text-title"><hr /></div>

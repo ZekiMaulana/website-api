@@ -61,7 +61,8 @@ body {
 
 .dropdown-content {
     display: none;
-    position: absolute;
+    position: fixed;
+    text-align: left;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
@@ -165,11 +166,30 @@ a:hover {
     color: #455078;
 }
 
+
+.text-title a{
+    padding: 15px;
+    margin: 0;
+}
+
+.text-title a:hover{
+    background-color: #774473;
+    border-radius: 10px;
+    color: white;
+}
+
+.active-link{
+    background-color: #774473;
+    color: #ECE3F8;
+    border-radius: 10px;
+}
+
 .title-featured {
     border: none;
     border-left: 5px solid #774473;
     padding-left: 10px;
     font-weight: bolder;
+    text-transform: capitalize;
 }
 
 .card-img{
@@ -184,11 +204,12 @@ a:hover {
     transform:scale(1.5);
 }
 
-.card-img:hover .text2 ,.card-img:hover .centered  {
+.card-img:hover .centered{
     bottom: 5px;
-    right: 6px;
     display: block;
-    
+}
+.card-img:hover .text2 , .card-img:hover .text3 {
+    display: block;
 }
 .card-img:hover img {
     filter: brightness(50%)
@@ -218,7 +239,7 @@ a:hover {
     position: absolute;
     display: none;
     font-size: 20px;
-    bottom: -10px;
+    bottom: 5px;
     right: 6px;
     padding: 5px;
     transition: bottom 1s;
@@ -227,7 +248,28 @@ a:hover {
     background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   }
 
+.card-img .text3{
+    position: absolute;
+    display: none;
+    bottom: 4px;
+    left: 0px;
+    padding: 5px;
+    font-size: 12px; 
+    border-radius: 0px 0 0 10px;
+    background-color: #774473;
+    
+}
 
+.card-img .text4{
+    position: absolute;
+    top: 0px;
+    right: 4px;
+    padding: 5px;
+    font-size: 8px; 
+    border-radius: 0 10px 0 0;
+    background-color: #774473;
+    
+}
 .card-film p{
     font-size: 12px; 
     margin-bottom: 0px;
@@ -258,7 +300,14 @@ h4{
     background-color: rgb(39, 56, 90, 1); /* Black w/opacity/see-through */
 }
 
-
+.select {
+    width: 20%;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2D3284;
+    color: #ECE3F8;
+}
 
 /* CSS footer */
 .footer {
