@@ -7,6 +7,7 @@
 
     <div class="text-title title-featured"><h2> <%= locals.name %>  <%= locals.year %> %> <% if(locals.type){%><%= "( " + locals.type + " )" %><% } %></h2></div>
     <div class="text-title" style="display: flex; gap: 10px; font-size: 15px;">
+      
       <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=tv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">TV</a>
       <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=movie&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">Movie</a>
       <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ova&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">OVA</a>
@@ -17,7 +18,7 @@
       <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=pv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">PV</a>
     </div>
     <div class="text-title"><hr /></div>
-  
+    <% if(data1.length > 0){ %>
     <% var title = ""; for(var i=0; i<data1.length; i++){ %>
       <% if(data1[i].title !== title){%>
       <div class="card-film">
@@ -71,9 +72,15 @@
       </div>
       <% } title = data2[i].title; %>
      <% } %>
-     <div class="text-title" style="text-align: center;">
+     
         
-    </div>
+  
+
+    <% } else {%>
+      <div class="text-title">
+        <h1 class="error">there's no content for this category</h1>
+      </div>
+    <% } %>
      <div class="text-title"><hr /></div>
      
 </section>
