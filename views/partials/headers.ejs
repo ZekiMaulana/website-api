@@ -11,44 +11,37 @@
 </head>
 <body>
 <main class="main-container">
-    <section class="headers">
-        <div class="left ">
-        <ul>
-            <li class="active" >
-                <a href="/">LOGO</a> </li>
-        </ul>        
-        <ul class="dropdown navmenu">
-            <li>
-                <a href="/search/top">Top Anime</a> </li>
-                <ul class="dropdown-content">
-                    <li><a  href="/search/top">All Anime</a></li>
-                    <li><a  href="/search/top?filter=airing">Airing</a></li>
-                    <li><a  href="/search/top?filter=upcoming">Upcoming</a></li>
-                    <li><a  href="/search/top?filter=bypopularity">By Popularity</a></li>
-                    <li><a  href="/search/top?filter=favorite">Favorite</a></li>
-        
-                </ul>
-        </ul>
-        <ul class="dropdown navmenu">
-            <li><a href="/search/seasons">Seasonal Anime</a></li>
-            <ul class="dropdown-content">
-                <% const date = new Date().getFullYear() %>
-                <li><a  href="/search/seasons?year=<%= date %>&season=winter">Winter</a></li>
-                <li><a  href="/search/seasons?year=<%= date %>&season=spring">Spring</a></li>
-                <li><a  href="/search/seasons?year=<%= date %>&season=summer">Summer</a></li>
-                <li><a  href="/search/seasons?year=<%= date %>&season=fall">Fall</a></li>
-            </ul>
-        </ul>
-        <ul class="navmenu">
-            <li><a href="/category?type=genre">Genre</a></li>
-        </ul>
-        <ul class="navmenu">
-            <li><a href="/category?type=release-year">Year</a></li>
-        </ul>
+    <section class="navbar">
+        <div class="navleft">
+            <ul>
+                <li class="logo"><a href="/">Logo</a></li>
+                <li class="dropdown">
+                    <a class="dropbtn" href="/search/top">Top Anime</a>
+                    <div class="dropdown-content">
+                        <a  href="/search/top">All Anime</a>
+                        <a  href="/search/top?filter=airing">Airing</a>
+                        <a  href="/search/top?filter=Upcoming">Upcoming</a>
+                        <a  href="/search/top?filter=bypopularity">By Popularity</a>
+                        <a  href="/search/top?filter=favorite">Favorite</a>
+                      </div>
+                </li>
+                <li class="dropdown">
+                    <a href="/search/seasons">Seasonal Anime</a>
+                  <div class="dropdown-content">
+                    <% const date = new Date().getFullYear() %>
+                    <a  href="/search/seasons?year=<%= date %>&season=winter">Winter</a>
+                    <a  href="/search/seasons?year=<%= date %>&season=spring">Spring</a>
+                    <a  href="/search/seasons?year=<%= date %>&season=summer">Summer</a>
+                    <a  href="/search/seasons?year=<%= date %>&season=fall">Fall</a>
+                  </div>
+                </li>
+                <li><a href="/category?type=genre">Genre</a></li>
+                <li><a href="/category?type=release-year">Year</a></li>
+              </ul>
         </div>
-        <div class="right">
-            <form role="search">
-                <input class="search" type="search" placeholder="Search">
+        <div class="navright">
+            <form>
+            <input class="search" type="text" name="search" placeholder="Search">
             </form>
         </div>
     </section>

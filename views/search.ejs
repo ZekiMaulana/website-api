@@ -24,7 +24,7 @@
       <div class="card-film">
         <a href="/anime?animeId=<%= data1[i].mal_id %>" style="color: black;">
         <div class="card-img">
-          <img class="card" src=<%= data1[i].images.jpg.large_image_url %> width="98%" height="325px">
+          <img class="card" src=<%= data1[i].images.jpg.large_image_url %> width="98%" height="300px">
           <div class="text1"><%= data1[i].type %></div>
           <div class="centered"><%= data1[i].synopsis %>....</div>
           <div class="text2">✩ <%= data1[i].score %></div>
@@ -63,11 +63,11 @@
       <div class="card-film">
         <a href="/anime?animeId=<%= data2[i].mal_id %>" style="color: black;">
         <div class="card-img">
-        <img class="card" src=<%= data2[i].images.jpg.large_image_url %> width="98%" height="325px">
+        <img class="card" src=<%= data2[i].images.jpg.large_image_url %> width="98%" height="300px">
         <div class="text1"><%= data2[i].type %></div>
         <div class="centered"><%= data2[i].synopsis %>....</div>
         <div class="text2">✩ <%= data2[i].score %></div>
-        
+
         <% if(data2[i].rating){ %><% var rating = data2[i].rating.split(" ")[0]; %>
             <% if(rating === "Rx"){ %>
               <div class="text3" style="background-color: red;"><%= rating %></div>

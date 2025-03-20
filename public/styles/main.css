@@ -9,90 +9,96 @@ body {
 }
 
 .main-container {
-    width: 1700px;
+    background-color: #ecdffd;
+    width: 1600px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     margin: auto;
     padding: 0;
 }
 
-.headers {
+/* CSS Navbar  */
+
+.navbar {
     display: flex;
-    flex-direction: row;
-    position: sticky;
-    top: 0;
-    background-color: aqua;
     justify-content: space-between;
+    background-color: rgb(236, 223, 253, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    border-bottom: 1px solid #dcc2ff ;
+    top: 0;
 }
 
-.headers ul{
-    list-style-type: none;
+.navleft ul {
+    list-style: none;
+    display: flex;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
-    
+    font-weight: bold;
+    font-size: 15px;
 }
 
-.headers li a{
-    display: block;
-    color: white;
+.navleft li a, .dropbtn {
+    display: inline-block;
+    color: black;
     text-align: center;
     padding: 20px;
     text-decoration: none;
+    }
+
+.navleft li a:hover, .dropdown:hover .dropbtn {
+
+    color: #774473;
 }
 
-
-.headers li a:hover:not(.active) {
-    background-color: antiquewhite;
-    color: #333;
-  }
-
-  .active {
-    background-color: teal;
-    color: #333;
-  }
-
-.headers .left {
-    display: flex;
+.navleft li.dropdown {
+    display: inline-block;
 }
 
-.headers .right {
-    padding: 8px 25px;
-}
-
-.dropdown-content {
+.navleft .dropdown-content {
     display: none;
-    position: fixed;
-    text-align: left;
+    position: absolute;
+    background-color: rgb(236, 227, 248, 0.95);
+    backdrop-filter: blur(10px);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
     z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-.search {
-    padding: 10px 25px; 
-    
-    background-image: url('/images/cash-stack.svg');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding-left: 40px;
-
-    border: none;
-    border-bottom: 2px solid #333;
-
-    width: 50%;
-    transition: width 0.4s ease-in-out;
+.navleft .logo{
+    background-color: #e4d1fd;
 }
 
-.search:focus {
-    width: 100%;
-    background-color: #333;
-    color: white;
-    border-bottom: 2px solid white;
+.navleft .dropdown-content a {
+    color: black;
+    padding: 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+
+.navleft .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.navright {
+    padding: 5px;
+    right: 100px;
+}
+.search {
+    padding: 15px 25px; 
+    
+    background-image: url('/images/search-circle.svg');
+    background-size: 15%;
+    background-position:right;
+    background-repeat: no-repeat;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #dcc2ff; 
 }
 
 /* CSS Main content section */
@@ -108,15 +114,22 @@ body {
 
 .content-title {
     grid-column: span 3;
+    display: flex;
+    flex-direction: column;
     text-align: left;
-    overflow-wrap: break-word;
     margin: 0px 50px;
 }
 
 .content-title h1{
     font-size: 4rem;
+    overflow: hidden;
+    max-height: 220px;
 }
 
+.content-title .synopsis {
+    overflow: hidden;
+    max-height: 53px;
+}
 span {
     font-size: 0.75rem;
     color: #455078;
@@ -143,7 +156,7 @@ span {
 }
 
 .video-box {
-    height: 680px;
+    height: 650px;
     width: 95%;
 }
 
@@ -191,8 +204,11 @@ a:hover {
     font-weight: bolder;
     text-transform: capitalize;
 }
-
-.card-img{
+.card-film {
+    display: flex;
+    flex-direction: column;
+}
+.card-film .card-img{
     transition: transform .2s; /* Animation */
     overflow : hidden;
     position: relative;
@@ -212,7 +228,7 @@ a:hover {
     display: block;
 }
 .card-img:hover img {
-    filter: brightness(50%)
+    filter: brightness(50%);
 }
 
 .card-img .text1{
@@ -270,6 +286,7 @@ a:hover {
     background-color: #774473;
     
 }
+
 .card-film p{
     font-size: 12px; 
     margin-bottom: 0px;
@@ -285,6 +302,7 @@ h4{
     grid-column: span 7;
     color: #455078;
 }
+
 .button-featured {
     background-color: #774473; 
     color: white;
@@ -297,15 +315,6 @@ h4{
     border-radius: 10px;
 }
 
-
-.select {
-    width: 20%;
-    padding: 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #2D3284;
-    color: #ECE3F8;
-}
 
 /* CSS footer */
 .footer {
@@ -331,7 +340,7 @@ h4{
 
 .footer-link{
     color: #774473;
-    background-color: #ECE3F8;
+    background-color: #ecdffd;
     border: 0px;
     margin-bottom: 10px;
     font-size: 14px;
@@ -395,7 +404,7 @@ h4{
     object-fit: cover;
 }
 
-.cover-rating .rating, .episodes .rating{
+.content-title .rating, .episodes .rating{
     font-size: 0.8rem;
     color: #455078;
 }

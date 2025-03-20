@@ -8,34 +8,41 @@
   <% const topAnime = top.data %>
   <% const topUpcoming = upcoming.data %>
 
+  <% const ranTop = [topAired, topUpcoming] %>
+  <% const randomTopNum = Math.floor(Math.random() * ranTop.length) %>
+  <% const randomContent = ranTop[randomTopNum] %>
+
   <div class="content-title">
-    <h1><%= topAired[ranNum].title %></h1>
-    <span><%= topAired[ranNum].aired.prop.from.day %>. 
-      <% var month = topAired[ranNum].aired.string.split(" ")[0] %>
+    <h1><%= randomContent[ranNum].title %></h1>
+    <span><%= randomContent[ranNum].aired.prop.from.day %>. 
+      <% var month = randomContent[ranNum].aired.string.split(" ")[0] %>
       <%= month %>, 
-      <%= topAired[ranNum].aired.prop.from.year %></span>
+      <%= randomContent[ranNum].aired.prop.from.year %></span>
     <div class="score">
-      <button class="score-button"><%= topAired[ranNum].score %></button>
-      <% const score = Math.floor(topAired[ranNum].score) %>
+      <button class="score-button"><% if(!randomContent[ranNum].score){%> ---- <% } else { %><%= randomContent[ranNum].score %> <% } %></button>
+      <% const score = Math.floor(randomContent[ranNum].score) %>
       <p><% for(var i= 1; i<= 10; i++) { if(i <= score) { %><img src="/images/star.svg" height="30px"><% } else { %><img src="/images/star-blank.svg" height="30px"><% }} %><br>
-        <img src="/images/profile.svg" height="20px"> <%= topAired[ranNum].scored_by %> Votes</p>
+        <img src="/images/profile.svg" height="20px"> <%= randomContent[ranNum].scored_by %> Votes</p>
     </div>
-    <b>| <% topAired[ranNum].genres.forEach(genre => { %><%= genre.name %> | <% }) %>
-      <% topAired[ranNum].explicit_genres.forEach(genre => { %><%= genre.name %> | <% }) %>
-      <% topAired[ranNum].themes.forEach(genre => { %><%= genre.name %> | <% }) %>
-      <% topAired[ranNum].demographics.forEach(genre => { %><%= genre.name %> | <% }) %></b>
-    <p><%= topAired[ranNum].synopsis.slice(0, 240) %>...<br><a href="/anime?animeId=<%= topAired[ranNum].mal_id %>">Continue reading</a></p>
+    <p class="rating"><%= randomContent[ranNum].rating %><br>
+    <p class="rating"><%= randomContent[ranNum].status %>  (<%= randomContent[ranNum].type %>)  ||  <%= randomContent[ranNum].episodes %> episodes  ||  <%= randomContent[ranNum].duration %></p>
+
+    <b style="max-height: 23px; overflow: hidden;">| <% randomContent[ranNum].genres.forEach(genre => { %><%= genre.name %> | <% }) %>
+      <% randomContent[ranNum].explicit_genres.forEach(genre => { %><%= genre.name %> | <% }) %>
+      <% randomContent[ranNum].themes.forEach(genre => { %><%= genre.name %> | <% }) %>
+      <% randomContent[ranNum].demographics.forEach(genre => { %><%= genre.name %> | <% }) %></b>
+    <p class="synopsis"><%= randomContent[ranNum].synopsis%>...</p><a href="/anime?animeId=<%= randomContent[ranNum].mal_id %>">Continue reading</a>
   </div>
 
   <div class="content-video">
-      <% if(topAired[ranNum].trailer.embed_url === null){ %>
+      <% if(randomContent[ranNum].trailer.embed_url === null){ %>
         <div style="text-align: center;">
-          <img class="card" src=<%= topAired[ranNum].images.jpg.large_image_url %>>
+          <img class="card" src=<%= randomContent[ranNum].images.jpg.large_image_url %>>
           <h1>Video Content not Found</h1>
         </div>
           
         <% } else { %>
-        <iframe class="card video-box" src=<%= topAired[ranNum].trailer.embed_url %>></iframe>
+        <iframe class="card video-box" src=<%= randomContent[ranNum].trailer.embed_url %>></iframe>
       <% } %>
   </div>
   
@@ -46,7 +53,7 @@
     <div class="card-film">
       <a href="/anime?animeId=<%= topAired[i].mal_id %>" style="color: black;">
       <div class="card-img">
-      <img class="card" src=<%= topAired[i].images.jpg.large_image_url %> width="98%" height="325px">
+      <img class="card" src=<%= topAired[i].images.jpg.large_image_url %> width="98%" height="300px">
       <div class="text1">Featured</div>
       <div class="centered"><%= topAired[i].synopsis %></div>
       <div class="text2">✩ <%= topAired[i].score %></div>
@@ -77,7 +84,7 @@
     <div class="card-film">
       <a href="/anime?animeId=<%= topAiredMovie[i].mal_id %>" style="color: black;">
       <div class="card-img">
-      <img class="card" src=<%= topAiredMovie[i].images.jpg.large_image_url %> width="98%" height="325px">
+      <img class="card" src=<%= topAiredMovie[i].images.jpg.large_image_url %> width="98%" height="300px">
       <div class="text1"><%= topAiredMovie[i].type %></div>
       <div class="centered"><%= topAiredMovie[i].synopsis %></div>
       <div class="text2">✩ <%= topAiredMovie[i].score %></div>
@@ -113,7 +120,7 @@
     <div class="card-film">
       <a href="/anime?animeId=<%= topAnime[i].mal_id %>" style="color: black;">
       <div class="card-img">
-      <img class="card" src=<%= topAnime[i].images.jpg.large_image_url %> width="98%" height="325px">
+      <img class="card" src=<%= topAnime[i].images.jpg.large_image_url %> width="98%" height="300px">
       <div class="text1"><%= topAnime[i].type %></div>
       <div class="centered"><%= topAnime[i].synopsis %></div>
       <div class="text2">✩ <%= topAnime[i].score %></div>

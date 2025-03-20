@@ -33,32 +33,48 @@ const resultExplicitGenres = readJson("explicit_genres")
 const resultChar = readJson("topCharacters")
 const seasonsList = readJson("seasonsList")
 
+const resultTopAired = readJson("TopAiredTv")
+const resultTopAiredMovie = readJson("TopAiredMovie")
+const resultTopUpcoming = readJson("TopUpcoming")
+const resultTopAnime = readJson("TopAnime")
+
+
 
 app.get("/", async (req, res) => {
     try {
 
         // use public api
 
-        const paramsTopAired = { filter: "airing", type: "tv"};
-        const resultTopAired = await axios.get(API_URL + "top/anime", {params: paramsTopAired});
+        // const paramsTopAired = { filter: "airing", type: "tv"};
+        // const resultTopAired = await axios.get(API_URL + "top/anime", {params: paramsTopAired});
 
-        const paramsTopAiredMovie = { type: "movie"};
-        const resultTopAiredMovie = await axios.get(API_URL + "top/anime", {params: paramsTopAiredMovie});
+        // const paramsTopAiredMovie = { type: "movie"};
+        // const resultTopAiredMovie = await axios.get(API_URL + "top/anime", {params: paramsTopAiredMovie});
 
-        const paramsTopUpcoming = { filter: "upcoming"};
-        const resultTopUpcoming = await axios.get(API_URL + "top/anime", {params: paramsTopUpcoming});
+        // const paramsTopUpcoming = { filter: "upcoming"};
+        // const resultTopUpcoming = await axios.get(API_URL + "top/anime", {params: paramsTopUpcoming});
 
         
-        const resultTopAnime = await axios.get(API_URL + "top/anime");
+        // const resultTopAnime = await axios.get(API_URL + "top/anime");
         
-        res.render("index.ejs", {content: resultTopAired.data,  characters: resultChar, movie: resultTopAiredMovie.data, top: resultTopAnime.data, upcoming: resultTopUpcoming.data});
+        res.render("index.ejs", {
+            content: resultTopAired,  
+            characters: resultChar, 
+            movie: resultTopAiredMovie, 
+            top: resultTopAnime, 
+            upcoming: resultTopUpcoming});
 
         
               
 
     } catch (error) {
         console.error("Failed to make request:", error.message);
-        res.render("error.ejs", { error: error.message });
+        console.error(error.status);
+        var message = ""
+        if (error.status === 429){
+            message = "Wait a minute, Too much Request";
+        }
+        res.render("error.ejs", { error: message });
     }
 });
 
