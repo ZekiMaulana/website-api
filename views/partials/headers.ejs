@@ -21,21 +21,22 @@
             <li>
                 <a href="/search/top">Top Anime</a> </li>
                 <ul class="dropdown-content">
-                    <li><a class="dropdown-item" href="/search/top">All Anime</a></li>
-                    <li><a class="dropdown-item" href="/search/top?filter=airing">Airing</a></li>
-                    <li><a class="dropdown-item" href="/search/top?filter=upcoming">Upcoming</a></li>
-                    <li><a class="dropdown-item" href="/search/top?filter=bypopularity">By Popularity</a></li>
-                    <li><a class="dropdown-item" href="/search/top?filter=favorite">Favorite</a></li>
+                    <li><a  href="/search/top">All Anime</a></li>
+                    <li><a  href="/search/top?filter=airing">Airing</a></li>
+                    <li><a  href="/search/top?filter=upcoming">Upcoming</a></li>
+                    <li><a  href="/search/top?filter=bypopularity">By Popularity</a></li>
+                    <li><a  href="/search/top?filter=favorite">Favorite</a></li>
         
                 </ul>
         </ul>
         <ul class="dropdown navmenu">
-            <li><a href="/">Seasonal Anime</a></li>
+            <li><a href="/search/seasons">Seasonal Anime</a></li>
             <ul class="dropdown-content">
-                <li><a class="dropdown-item" href="/">Winter</a></li>
-                <li><a class="dropdown-item" href="/">Spring</a></li>
-                <li><a class="dropdown-item" href="/">Summer</a></li>
-                <li><a class="dropdown-item" href="/">Fall</a></li>
+                <% const date = new Date().getFullYear() %>
+                <li><a  href="/search/seasons?year=<%= date %>&season=winter">Winter</a></li>
+                <li><a  href="/search/seasons?year=<%= date %>&season=spring">Spring</a></li>
+                <li><a  href="/search/seasons?year=<%= date %>&season=summer">Summer</a></li>
+                <li><a  href="/search/seasons?year=<%= date %>&season=fall">Fall</a></li>
             </ul>
         </ul>
         <ul class="navmenu">

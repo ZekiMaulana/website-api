@@ -8,14 +8,14 @@
     <div class="text-title title-featured"><h2> <%= locals.name %>  <%= locals.year %> %> <% if(locals.type){%><%= "( " + locals.type + " )" %><% } %></h2></div>
     <div class="text-title" style="display: flex; gap: 10px; font-size: 15px;">
       
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=tv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">TV</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=movie&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">Movie</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ova&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">OVA</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=special&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">Special</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ona&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">ONA</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=music&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">Music</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=cm&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">CM</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=pv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>">PV</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=tv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">TV</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=movie&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">Movie</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ova&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">OVA</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=special&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">Special</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ona&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">ONA</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=music&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">Music</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=cm&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">CM</a>
+      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=pv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">PV</a>
     </div>
     <div class="text-title"><hr /></div>
     <% if(data1.length > 0){ %>
@@ -28,7 +28,8 @@
           <div class="text1"><%= data1[i].type %></div>
           <div class="centered"><%= data1[i].synopsis %>....</div>
           <div class="text2">✩ <%= data1[i].score %></div>
-          <% if(data1[i].rating){ %><% var rating = data1[i].rating.split(" ")[0]; %>
+
+          <% if(data1[i].rating){ %><% var rating = data1[i].rating.split(" ")[0] %>
             <% if(rating === "Rx"){ %>
               <div class="text3" style="background-color: red;"><%= rating %></div>
             <% } else if(rating === "R"){ %>
@@ -36,7 +37,18 @@
             <% } else { %>
               <div class="text3" style="background-color: green;"><%= rating %></div>
           <% }} %>
-          <div class="text4"><%= data1[i].status %></div>
+
+          <% if(data1[i].status){ %><% var status = data1[i].status.split(" ")[0] %>
+            <% if(status === "Currently"){ %>
+              <div class="text4" style="background-color: rgb(27, 187, 27);"><%= data1[i].status %></div>
+            <% } else if(status === "Finished"){ %>
+              <div class="text4" style="background-color: rgb(35, 49, 238)"><%= data1[i].status %></div>
+              <% } else if(status === "Not"){ %>
+                <div class="text4" style="background-color: #455078"><%= data1[i].status %></div>
+              <% }} %>
+
+
+         
         </div>
         <% var title_name = data1[i].title  %>
         <h4><%= title_name %></h4>
@@ -55,6 +67,7 @@
         <div class="text1"><%= data2[i].type %></div>
         <div class="centered"><%= data2[i].synopsis %>....</div>
         <div class="text2">✩ <%= data2[i].score %></div>
+        
         <% if(data2[i].rating){ %><% var rating = data2[i].rating.split(" ")[0]; %>
             <% if(rating === "Rx"){ %>
               <div class="text3" style="background-color: red;"><%= rating %></div>
@@ -63,7 +76,16 @@
             <% } else { %>
               <div class="text3" style="background-color: green;"><%= rating %></div>
           <% }} %>
-          <div class="text4"><%= data2[i].status %></div>
+
+          <% if(data1[i].status){ %><% var status = data1[i].status.split(" ")[0] %>
+            <% if(status === "Currently"){ %>
+              <div class="text4" style="background-color: rgb(27, 187, 27);"><%= data1[i].status %></div>
+            <% } else if(status === "Finished"){ %>
+              <div class="text4" style="background-color: rgb(35, 49, 238)"><%= data1[i].status %></div>
+              <% } else if(status === "Not"){ %>
+                <div class="text4" style="background-color: #455078"><%= data1[i].status %></div>
+              <% }} %>
+
         </div>
         <% var title_name = data2[i].title  %>
         <h4><%= title_name %></h4>

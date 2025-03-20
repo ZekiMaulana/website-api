@@ -107,8 +107,6 @@ app.get("/search/:anime", async (req, res) => {
         var result2 = {}
         var params1 = {}
         var params2 = {}
-        var start_date = ""
-        var end_date = ""
         
         res.locals.anime = req.params.anime
 
@@ -116,12 +114,14 @@ app.get("/search/:anime", async (req, res) => {
             params1 = {
                 filter: req.query.filter, 
                 type: req.query.type,
-                page: 1,     
+                page: 1,    
+                limit: 21, 
             }
             params2 = {
                 filter: req.query.filter, 
                 type: req.query.type,
                 page: 2,     
+                limit: 21,
             }
 
             res.locals.filter = req.query.filter
@@ -139,6 +139,9 @@ app.get("/search/:anime", async (req, res) => {
             
         } else if (req.params.anime === "category"){
 
+            var start_date = ""
+            var end_date = ""
+            
             if(req.query.year){
                 res.locals.year = req.query.year
                 start_date = req.query.year + "-01-01"
@@ -154,6 +157,7 @@ app.get("/search/:anime", async (req, res) => {
                 start_date: start_date, 
                 end_date: end_date, 
                 page: 1,
+                limit: 21,
             }
 
             params2 = {
@@ -164,12 +168,9 @@ app.get("/search/:anime", async (req, res) => {
                 start_date: start_date, 
                 end_date: end_date, 
                 page: 2,
+                limit: 21,
             }
             
-            
-            
-            
-
             res.locals.name = req.query.genresName
             res.locals.genreId = req.query.genresId
             res.locals.type = req.query.type
@@ -179,6 +180,42 @@ app.get("/search/:anime", async (req, res) => {
 
             result1 = await axios.get(API_URL + "anime", {params: params1})
             result2 = await axios.get(API_URL + "anime", {params: params2});
+
+        } else if (req.params.anime === "seasons"){
+
+            params1 = {
+                filter: req.query.type,
+                page: 1, 
+                limit: 21,    
+            }
+            params2 = {
+                filter: req.query.type,
+                page: 2,   
+                limit: 21,  
+            }
+            
+            res.locals.type = req.query.type
+            
+            
+           if (req.query.season){
+
+                const url = "seasons/" + req.query.year + "/" + req.query.season
+             
+                result1 = await axios.get(API_URL + url, {params: params1})
+                result2 = await axios.get(API_URL + url, {params: params2});
+
+                res.locals.name = req.query.season
+                res.locals.year = req.query.year
+
+            } else {
+                
+                result1 = await axios.get(API_URL + "seasons/now", {params: params1})
+                result2 = await axios.get(API_URL + "seasons/now", {params: params2});
+                
+                res.locals.name = result1.data.data[0].season
+                res.locals.year = result1.data.data[0].year
+
+            } 
         }
 
         
@@ -226,7 +263,8 @@ app.post("/search", async(req, res) => {
             genres: genreId, 
             start_date: start_date, 
             end_date: end_date, 
-            page: page1 }
+            page: page1,
+            limit: 21, }
 
         const result1 = await axios.get(API_URL + "anime", {params: params1})
         
@@ -236,7 +274,8 @@ app.post("/search", async(req, res) => {
             genres: genreId, 
             start_date: start_date, 
             end_date: end_date, 
-            page: page2 }
+            page: page2,
+            limit: 21, }
 
         const result2 = await axios.get(API_URL + "anime", {params: params2})
 
