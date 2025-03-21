@@ -61,7 +61,7 @@ body {
     display: none;
     position: absolute;
     background-color: rgb(236, 227, 248, 0.95);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     min-width: 160px;
     z-index: 1;
 }
@@ -180,15 +180,19 @@ a:hover {
 }
 
 
-.text-title a{
+.text-title .filter-type .link-type, .text-title a{
     padding: 15px;
     margin: 0;
 }
 
-.text-title a:hover{
+.text-title .filter-type .link-type:hover{
     background-color: #774473;
     border-radius: 10px;
     color: white;
+}
+
+.link-del:hover {
+    text-decoration: line-through;
 }
 
 .active-link{
@@ -196,6 +200,51 @@ a:hover {
     color: #ECE3F8;
     border-radius: 10px;
 }
+
+.filtering input, ul.submenu{
+    display: none;
+    list-style: none;
+    margin: 0;
+    
+    padding: 0;
+    position: absolute;
+}
+  
+.filtering .submenu{
+    border-radius: 0px 0px 10px 10px;
+    background-color: rgb(45, 50, 132, 0.8);
+}
+
+.filtering .submenu a {
+    color: white;
+    padding: 9px;
+}
+  
+.filtering .submenu li:hover {
+    background-color: #774473;
+}
+.filtering .submenu .last-order:hover {
+    background-color: #774473;  
+    border-radius: 0 0 10px 10px;
+}
+  
+/*position the label*/
+.filtering label {
+    position: relative;
+    cursor: pointer;
+    padding: 5px;
+    background-color: rgb(45, 50, 132, 0.8);
+    color: white;
+    border-radius: 10px 10px 0px 0;
+    display: flex;
+    align-content: center;
+}
+  
+/*show the submenu when input is checked*/
+.filtering input:checked~ul.submenu {
+    display: block;
+}
+
 
 .title-featured {
     border: none;
@@ -316,6 +365,11 @@ h4{
 }
 
 
+.filtering {
+    display: flex; 
+    font-size: 15px; 
+    justify-content: space-between;
+}
 /* CSS footer */
 .footer {
     display: grid;
@@ -382,6 +436,14 @@ h4{
     border-radius: 10px;
 }
 
+.content-category:hover {
+    background-color: #774473;
+}
+
+.gen {
+    margin-top: 50px;
+}
+
 /* CSS Page View */
 .view-content {
     display: grid;
@@ -404,7 +466,7 @@ h4{
     object-fit: cover;
 }
 
-.content-title .rating, .episodes .rating{
+.content-title .rating, .episodes .rating, .text-title .rating{
     font-size: 0.8rem;
     color: #455078;
 }

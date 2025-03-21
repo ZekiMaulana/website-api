@@ -69,7 +69,7 @@
   <% animeEp.forEach(episode => {%> 
     <% if (episode.mal_id % 2 !== 0){ %>
   <div class="color1 poin"><%= episode.mal_id %></div>
-  <div class="color1"><%= episode.title %><p class="rating" style="color: white;"><%= episode.aired.split("T")[0] %></p></div>
+  <div class="color1"><%= episode.title %><p class="rating" style="color: white;"><% if(episode.aired) { %><%= episode.aired.split("T")[0] %> <% } %></p></div>
   <div class="color1 poin"><img src="/images/star-white.svg" height="20px"> <%= episode.score %></div>
     <% } else { %>
   <div class="color2 poin"><%= episode.mal_id %></div>

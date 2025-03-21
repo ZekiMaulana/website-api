@@ -2,23 +2,109 @@
 
 <% const data1 = content1.data %>
 <% const data2 = content2.data %>
+<% const page = content1.pagination %>
+<% const date = new Date().getFullYear() + 1; console.log(locals.year)%>
+
 
 <section class="main-content">
 
     <div class="text-title title-featured"><h2> <%= locals.name %>  <%= locals.year %> %> <% if(locals.type){%><%= "( " + locals.type + " )" %><% } %></h2></div>
-    <div class="text-title" style="display: flex; gap: 10px; font-size: 15px;">
+    <div class="text-title filtering">
+      <div class="filter-type">
+      <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=tv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        TV</a>
+      <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=movie&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        Movie</a>
+      <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ova&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        OVA</a>
+      <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=special&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        Special</a>
+      <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ona&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        ONA</a>
+      <a class="link-type"  href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=music&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        Music</a>
+      <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=cm&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        CM</a>
+      <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=pv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+        PV</a>
+      </div>
+      <% if (locals.anime === "category"){ %>
+      <div>    
+        <input id="check02" type="checkbox" name="menu" />
+        <label for="check02" style="min-width: 126px;">Status <img src="/images/arrow-down.svg" height="20px"></label>
+        <ul class="submenu">
+          <li>
+            <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=airing&order_by=<%= locals.order_by %>&page=1">
+            Currently Airing</a></li>
+          <li>
+            <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=complete&order_by=<%= locals.order_by %>&page=1">
+      Finished Airing</a></li>
+          <li><a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=upcoming&order_by=<%= locals.order_by %>&page=1">
+            Not yet aired</a></li>
+        </ul>
+     
+      </div>
+      <div class="check-drop">
       
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=tv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">TV</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=movie&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">Movie</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ova&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">OVA</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=special&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">Special</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ona&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">ONA</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=music&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">Music</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=cm&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">CM</a>
-      <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=pv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>">PV</a>
+          <input id="check01" type="checkbox" name="menu" />
+            <label for="check01">Order by <img src="/images/arrow-down.svg" height="20px"></label>
+            <ul class="submenu">
+              <li>
+                <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=start_date&page=1">
+                  Recent</a></li>
+              <li>
+                <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=score&page=1">
+                  Rating</a></li>
+              <li><a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=rank&page=1">
+                Rank</a></li>
+              <li>
+                <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=popularity&page=1">
+                  Popularity</a></li>
+              <li class="last-order">
+                <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=favorites&page=1">
+                  Favorites</a></li>
+            </ul>        
+      </div>
+      <% } else if(locals.anime === "seasons"){ %>
+        <div class="filter-type" style="display: flex; justify-content: center; align-items: center;">
+          <a class="" href="/search/<%= locals.anime %>?year=<%= Number(locals.year)-1 %>&season=fall&page=1">
+            <img src="/images/fast-backward.svg" height="20px"></a>
+          <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=winter&page=1">
+            Winter</a>
+          <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=spring&page=1">
+            Spring</a>
+          <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=summer&page=1">
+            Summer </a>
+          <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=fall&page=1">
+            Fall</a>
+            <% if(locals.year != date){ %> 
+          <a class="" href="/search/<%= locals.anime %>?year=<%= Number(locals.year)+1 %>&season=winter&page=1">
+            <img src="/images/fast-forward.svg" height="20px"></a>
+            <% } %>
+        </div>
+      <% } %>
     </div>
+    <% if(locals.type || locals.status || locals.order_by){ %> 
+    <div class="text-title " style="text-transform: capitalize;">
+      <hr/>
+      <span class="rating">Filtering : 
+        <% if(locals.type) {%>
+          <a class="link-del" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+            Type : <%= locals.type %></a>
+        <% } %>
+        <% if(locals.status) {%>
+          <a class="link-del" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=&order_by=<%= locals.order_by %>&page=1">
+            Status : <%= locals.status %></a>
+        <% } %>
+        <% if(locals.order_by) {%>
+          <a class="link-del" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=&page=1">
+            Order by : <%= locals.order_by %></a>
+        <% } %>
+      </span>
+    </div>
+    <% } %>
     <div class="text-title"><hr /></div>
-    <% if(data1.length > 0){ %>
+    <% if(data1 && data1.length > 0){ %>
     <% var title = ""; for(var i=0; i<data1.length; i++){ %>
       <% if(data1[i].title !== title){%>
       <div class="card-film">
@@ -38,12 +124,12 @@
               <div class="text3" style="background-color: green;"><%= rating %></div>
           <% }} %>
 
-          <% if(data1[i].status){ %><% var status = data1[i].status.split(" ")[0] %>
-            <% if(status === "Currently"){ %>
+          <% if(data1[i].status){ %><% var status1 = data1[i].status.split(" ")[0] %>
+            <% if(status1 === "Currently"){ %>
               <div class="text4" style="background-color: rgb(27, 187, 27);"><%= data1[i].status %></div>
-            <% } else if(status === "Finished"){ %>
+            <% } else if(status1 === "Finished"){ %>
               <div class="text4" style="background-color: rgb(35, 49, 238)"><%= data1[i].status %></div>
-              <% } else if(status === "Not"){ %>
+              <% } else if(status1 === "Not"){ %>
                 <div class="text4" style="background-color: #455078"><%= data1[i].status %></div>
               <% }} %>
 
@@ -77,13 +163,13 @@
               <div class="text3" style="background-color: green;"><%= rating %></div>
           <% }} %>
 
-          <% if(data1[i].status){ %><% var status = data1[i].status.split(" ")[0] %>
-            <% if(status === "Currently"){ %>
-              <div class="text4" style="background-color: rgb(27, 187, 27);"><%= data1[i].status %></div>
-            <% } else if(status === "Finished"){ %>
-              <div class="text4" style="background-color: rgb(35, 49, 238)"><%= data1[i].status %></div>
-              <% } else if(status === "Not"){ %>
-                <div class="text4" style="background-color: #455078"><%= data1[i].status %></div>
+          <% if(data2[i].status){ %><% var status1 = data2[i].status.split(" ")[0] %>
+            <% if(status1 === "Currently"){ %>
+              <div class="text4" style="background-color: rgb(27, 187, 27);"><%= data2[i].status %></div>
+            <% } else if(status1 === "Finished"){ %>
+              <div class="text4" style="background-color: rgb(35, 49, 238)"><%= data2[i].status %></div>
+              <% } else if(status1 === "Not"){ %>
+                <div class="text4" style="background-color: #455078"><%= data2[i].status %></div>
               <% }} %>
 
         </div>
@@ -95,15 +181,63 @@
       <% } title = data2[i].title; %>
      <% } %>
      
-        
-  
 
+     <div class="text-title" style="text-align: center;">
+      <% var last_page = Math.floor(page.last_visible_page / 2)%>
+   
+      <div class="filter-type" style="display: flex; justify-content: center; align-items: center;">
+        <% if(locals.page > 3 && last_page > 5){ %>
+          <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+            1</a>
+          <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=<%= Number(locals.page)-1 %>">
+              <img src="/images/fast-backward.svg" height="20px"></a>
+          <% } %>
+
+
+        <% if (last_page <= 5 || locals.page <= 2){ for (var i = 1; i<=last_page && i <= 5; i++){ %> 
+         <a class="link-type" <% if(i === locals.page){ %> style="background-color: #774473; color: #ECE3F8; border-radius:10px;" <% } %>
+         href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=<%= i %>">
+            <%= i %></a>
+          <% }} else if(last_page - Number(locals.page) > 2){ for(var i = -2; i< 3; i++){%> 
+            <% var paging = Number(locals.page) + i %>
+              
+              <a class="link-type" <% if(paging === locals.page){ %> style="background-color: #774473; color: #ECE3F8; border-radius:10px;" <% } %>
+              href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=<%= paging %>">
+                <%= paging %></a>
+      
+            <% }}else { for(var i = 1; i<= 5; i++){%> 
+              <% var paging = (last_page-5) + i %>
+              <a class="link-type" <% if(paging === locals.page){ %> style="background-color: #774473; color: #ECE3F8; border-radius:10px;" <% } %>
+                href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=<%= paging %>">
+                  <%= paging %></a>
+           <% } } %> 
+
+
+
+
+
+
+
+        
+
+
+        <% if(last_page > 5 && last_page - Number(locals.page) > 2 ){ %>
+        <a href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=<%= Number(locals.page)+1 %>">
+          <img src="/images/fast-forward.svg" height="20px"> </a>
+
+          <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=<%= locals.type %>&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=<%= last_page %>">
+            <%= last_page %></a>
+      <% } %>
+        
+      </div>
+      <hr />
+    </div>
     <% } else {%>
       <div class="text-title">
         <h1 class="error">there's no content for this category</h1>
+        <hr />
       </div>
     <% } %>
-     <div class="text-title"><hr /></div>
      
 </section>
 

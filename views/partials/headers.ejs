@@ -16,23 +16,23 @@
             <ul>
                 <li class="logo"><a href="/">Logo</a></li>
                 <li class="dropdown">
-                    <a class="dropbtn" href="/search/top">Top Anime</a>
+                    <a class="dropbtn" href="/search/top?page=1">Top Anime</a>
                     <div class="dropdown-content">
-                        <a  href="/search/top">All Anime</a>
-                        <a  href="/search/top?filter=airing">Airing</a>
-                        <a  href="/search/top?filter=Upcoming">Upcoming</a>
-                        <a  href="/search/top?filter=bypopularity">By Popularity</a>
-                        <a  href="/search/top?filter=favorite">Favorite</a>
+                        <a  href="/search/top?page=1">All Anime</a>
+                        <a  href="/search/top?filter=airing&page=1">Airing</a>
+                        <a  href="/search/top?filter=Upcoming&page=1">Upcoming</a>
+                        <a  href="/search/top?filter=bypopularity&page=1">By Popularity</a>
+                        <a  href="/search/top?filter=favorite&page=1">Favorite</a>
                       </div>
                 </li>
                 <li class="dropdown">
-                    <a href="/search/seasons">Seasonal Anime</a>
+                    <a href="/search/seasons?page=1">Seasonal Anime</a>
                   <div class="dropdown-content">
                     <% const date = new Date().getFullYear() %>
-                    <a  href="/search/seasons?year=<%= date %>&season=winter">Winter</a>
-                    <a  href="/search/seasons?year=<%= date %>&season=spring">Spring</a>
-                    <a  href="/search/seasons?year=<%= date %>&season=summer">Summer</a>
-                    <a  href="/search/seasons?year=<%= date %>&season=fall">Fall</a>
+                    <a  href="/search/seasons?year=<%= date %>&season=winter&page=1">Winter</a>
+                    <a  href="/search/seasons?year=<%= date %>&season=spring&page=1">Spring</a>
+                    <a  href="/search/seasons?year=<%= date %>&season=summer&page=1">Summer</a>
+                    <a  href="/search/seasons?year=<%= date %>&season=fall&page=1">Fall</a>
                   </div>
                 </li>
                 <li><a href="/category?type=genre">Genre</a></li>
