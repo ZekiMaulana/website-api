@@ -14,6 +14,8 @@ const API_URL = "https://api.jikan.moe/v4/"
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// function for saving json data
 function saveJson(data, fileName){
     fs.writeFile(__dirname + "/public/dataJSON/"+ fileName +".json", JSON.stringify(data), (err) => {
                 if (err) throw err;
@@ -21,13 +23,14 @@ function saveJson(data, fileName){
             });
 }
 
+// function for read data JSON local
 function readJson(fileName) {
     const file = fs.readFileSync(__dirname + "/public/dataJSON/" + fileName + ".json", "utf8");
 
     return JSON.parse(file)
 }
 
-// use data JSON local
+// use data JSON local (Sometimes error because too many request to the server)
 const resultGenres = readJson("genres")
 const resultExplicitGenres = readJson("explicit_genres")
 const resultThemes = readJson("themes")
