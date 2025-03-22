@@ -33,10 +33,6 @@ const resultExplicitGenres = readJson("explicit_genres")
 const resultThemes = readJson("themes")
 const resultDemo = readJson("demographics")
 const resultChar = readJson("topCharacters")
-const resultTopAired = readJson("TopAiredTv")
-const resultTopAiredMovie = readJson("TopAiredMovie")
-const resultTopUpcoming = readJson("TopUpcoming")
-const resultTopAnime = readJson("TopAnime")
 
 
 // Use Public Api
@@ -179,8 +175,7 @@ app.get("/search/:anime", async (req, res) => {
         res.locals.page = Number(req.query.page)
         if (req.query.page){
             page2 = res.locals.page * 2
-            page1 = page2 - 1
-            console.log("page " + page1 + " and " + page2)}
+            page1 = page2 - 1}
 
         if(req.params.anime === "top"){
             params1 = {
@@ -220,7 +215,6 @@ app.get("/search/:anime", async (req, res) => {
                 res.locals.year = req.query.year
                 start_date = req.query.year + "-01-01"
                 end_date = (req.query.year) + "-12-31"
-                console.log(end_date + " | " + start_date)
             }
 
             if(req.query.order_by){
@@ -347,14 +341,12 @@ app.post("/search", async(req, res) => {
            
            res.locals.genreId = genreId
 
-           console.log("genreId = "+ genreId)
         }
 
         if (req.body.year){
             res.locals.year = req.body.year
             start_date = req.body.year + "-01-01"
             end_date = (req.body.year) + "-12-31"
-            console.log(end_date + " | " + start_date)
         }
 
         

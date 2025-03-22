@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content=", initial-scale=1.0">
+    <title>WR | Wibu Rendezvous</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Domine:wght@400..700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -11,11 +11,55 @@
 </head>
 <body>
 <main class="main-container">
+
     <section class="navbar">
         <div class="navleft">
             <ul>
-                <li class="logo"><a href="/">Logo</a></li>
+                <li class="logo-menu dropdown">
+                    <a class="logo dropbtn" href="/">
+                        <img src="/images/logo.png" height="55px" style="object-fit: cover;">
+                    </a>
+                
+                    <div class="dropdown-content">
+                        <ul>
+                            <li class="dropdown-small">
+                                <a class="dropbtn"  href="/search/top?page=1">Top Anime > > > </a>
+                                <div class="dropdown-content-small">
+                                    <a  href="/search/top?page=1">All Anime</a>
+                                    <a  href="/search/top?filter=airing&page=1">Airing</a>
+                                    <a  href="/search/top?filter=Upcoming&page=1">Upcoming</a>
+                                    <a  href="/search/top?filter=bypopularity&page=1">By Popularity</a>
+                                    <a  href="/search/top?filter=favorite&page=1">Favorite</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="dropdown-small">
+                                <a class="dropbtn" href="/search/seasons?page=1">Seasonal Anime</a>
+                                <div class="dropdown-content-small">
+                                    <% const date = new Date().getFullYear() %>
+                                    <a  href="/search/seasons?year=<%= date %>&season=winter&page=1">Winter</a>
+                                    <a  href="/search/seasons?year=<%= date %>&season=spring&page=1">Spring</a>
+                                    <a  href="/search/seasons?year=<%= date %>&season=summer&page=1">Summer</a>
+                                    <a  href="/search/seasons?year=<%= date %>&season=fall&page=1">Fall</a>
+                                  </div>
+                            </li>
+                        </ul>
+                        <ul>
+                        <li>
+                            <a  href="/category?type=genre">Genre</a></li>
+                        </ul>
+                        <ul>
+                            <li>
+                            <a  href="/category?type=release-year">Year</a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu"><a class="logo" href="/"><img src="/images/logo.png" height="55px" style="object-fit: cover;"></a></li>
                 <li class="dropdown">
+                    <div class="menu">
                     <a class="dropbtn" href="/search/top?page=1">Top Anime</a>
                     <div class="dropdown-content">
                         <a  href="/search/top?page=1">All Anime</a>
@@ -23,112 +67,29 @@
                         <a  href="/search/top?filter=Upcoming&page=1">Upcoming</a>
                         <a  href="/search/top?filter=bypopularity&page=1">By Popularity</a>
                         <a  href="/search/top?filter=favorite&page=1">Favorite</a>
-                      </div>
+                    </div>
+                    </div>
                 </li>
                 <li class="dropdown">
-                    <a href="/search/seasons?page=1">Seasonal Anime</a>
+                    <div class="menu">
+                    <a class="dropbtn"href="/search/seasons?page=1">Seasonal Anime</a>
                   <div class="dropdown-content">
-                    <% const date = new Date().getFullYear() %>
                     <a  href="/search/seasons?year=<%= date %>&season=winter&page=1">Winter</a>
                     <a  href="/search/seasons?year=<%= date %>&season=spring&page=1">Spring</a>
                     <a  href="/search/seasons?year=<%= date %>&season=summer&page=1">Summer</a>
                     <a  href="/search/seasons?year=<%= date %>&season=fall&page=1">Fall</a>
                   </div>
+                  </div>
                 </li>
-                <li><a href="/category?type=genre">Genre</a></li>
-                <li><a href="/category?type=release-year">Year</a></li>
+                <li class="menu"><a href="/category?type=genre">Genre</a></li>
+                <li class="menu"><a href="/category?type=release-year">Year</a></li>
               </ul>
         </div>
+
         <div class="navright">
-            <form>
+            <form class="menu">
             <input class="search" type="text" name="search" placeholder="Search">
             </form>
         </div>
+
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <nav class="navbar navbar-expand-lg" aria-label="Fifth navbar example">
-    <div class="container-fluid container-content">
-        <a class="navbar-brand" href="/"><img src="/images/cash-stack.svg" height="50px"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExample05">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/" data-bs-toggle="dropdown" aria-expanded="false">Top Anime</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/">All Anime</a></li>
-                    <li><a class="dropdown-item" href="/">Airing</a></li>
-                    <li><a class="dropdown-item" href="/">Upcoming</a></li>
-                    <li><a class="dropdown-item" href="/">Tv Series</a></li>
-                    <li><a class="dropdown-item" href="/">Movies</a></li>
-                </ul>
-                </li>
-            
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/" data-bs-toggle="dropdown" aria-expanded="false">Seasonal Anime</a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/">Winter</a></li>
-                <li><a class="dropdown-item" href="/">Spring</a></li>
-                <li><a class="dropdown-item" href="/">Summer</a></li>
-                <li><a class="dropdown-item" href="/">Fall</a></li>
-            </ul>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/category?type=genre">Genre</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/category?type=release-year">Year</a>
-            </li>
-        </ul>
-        <form role="search">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        </div>
-    </div>
-    </nav> -->

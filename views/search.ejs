@@ -3,7 +3,6 @@
 <% const data1 = content1.data %>
 <% const data2 = content2.data %>
 <% const page = content1.pagination %>
-<% const date = new Date().getFullYear() + 1; console.log(locals.year)%>
 
 
 <section class="main-content">
@@ -28,6 +27,40 @@
       <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=pv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
         PV</a>
       </div>
+
+      <div class="filter-type-small">    
+        <input id="check03" type="checkbox" name="menu" />
+        <label for="check03" style="min-width: 50px;">Type <img src="/images/arrow-down.svg" height="20px"></label>
+        <ul class="submenu">
+          <li>
+            <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=tv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              TV</a></li>
+          <li>
+            <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=movie&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              Movie</a></li>
+          <li>
+            <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ova&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              OVA</a> </li>
+          <li>
+            <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=special&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              Special</a></li>
+          <li>
+            <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=ona&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              ONA</a></li>
+          <li>
+            <a class="link-type"  href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=music&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              Music</a></li>
+          <li>
+            <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=cm&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              CM</a> </li>
+          <li>
+            <a class="link-type" href="/search/<%= locals.anime %>?filter=<%=locals.filter %>&type=pv&genresId=<%= locals.genreId %>&genresName=<%= locals.name %>&year=<%=locals.year %>&season=<%= locals.name %>&status=<%= locals.status %>&order_by=<%= locals.order_by %>&page=1">
+              PV</a></li>
+        </ul>
+     
+      </div>
+
+
       <% if (locals.anime === "category"){ %>
       <div>    
         <input id="check02" type="checkbox" name="menu" />
@@ -66,7 +99,8 @@
             </ul>        
       </div>
       <% } else if(locals.anime === "seasons"){ %>
-        <div class="filter-type" style="display: flex; justify-content: center; align-items: center;">
+        <div class="filter-type">
+        <div style="display: flex; justify-content: center; align-items: center;">
           <a class="" href="/search/<%= locals.anime %>?year=<%= Number(locals.year)-1 %>&season=fall&page=1">
             <img src="/images/fast-backward.svg" height="20px"></a>
           <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=winter&page=1">
@@ -81,6 +115,35 @@
           <a class="" href="/search/<%= locals.anime %>?year=<%= Number(locals.year)+1 %>&season=winter&page=1">
             <img src="/images/fast-forward.svg" height="20px"></a>
             <% } %>
+        </div>
+        </div>
+
+        <div class="filter-type-small">    
+          <input id="check04" type="checkbox" name="menu" />
+          <label for="check04" style="min-width: 50px;">Season <img src="/images/arrow-down.svg" height="20px"></label>
+          <ul class="submenu">
+            <li>
+              <a class="" href="/search/<%= locals.anime %>?year=<%= Number(locals.year)-1 %>&season=fall&page=1">
+                <img src="/images/fast-backward.svg" height="20px"></a></li>
+            <li>
+              <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=winter&page=1">
+                Winter</a></li>
+            <li>
+              <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=spring&page=1">
+                Spring</a></li>
+            <li>
+              <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=summer&page=1">
+                Summer </a></li>
+            <li>
+              <a class="link-type" href="/search/<%= locals.anime %>?year=<%= locals.year %>&season=fall&page=1">
+                Fall</a> </li>
+              <% if(locals.year != date){ %>
+            <li> 
+            <a class="" href="/search/<%= locals.anime %>?year=<%= Number(locals.year)+1 %>&season=winter&page=1">
+              <img src="/images/fast-forward.svg" height="20px"></a></li>
+              <% } %>
+          </ul>
+       
         </div>
       <% } %>
     </div>
@@ -104,13 +167,14 @@
     </div>
     <% } %>
     <div class="text-title"><hr /></div>
+    
     <% if(data1 && data1.length > 0){ %>
     <% var title = ""; for(var i=0; i<data1.length; i++){ %>
       <% if(data1[i].title !== title){%>
       <div class="card-film">
         <a href="/anime?animeId=<%= data1[i].mal_id %>" style="color: black;">
         <div class="card-img">
-          <img class="card" src=<%= data1[i].images.jpg.large_image_url %> width="98%" height="300px">
+          <img class="card" src=<%= data1[i].images.jpg.large_image_url %>>
           <div class="text1"><%= data1[i].type %></div>
           <div class="centered"><%= data1[i].synopsis %>....</div>
           <div class="text2">✩ <%= data1[i].score %></div>

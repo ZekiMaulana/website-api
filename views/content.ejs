@@ -6,7 +6,7 @@
 <section class="view-content">
   <div class="video">
     <% if(topAired.trailer.embed_url){ %>
-      <iframe class="card" width="95%" height="800px" src=<%= topAired.trailer.embed_url %>></iframe>
+      <iframe class="card vid" src=<%= topAired.trailer.embed_url %>></iframe>
     <% } else { %>
       <h1>Videos not Found</h1>
       <iframe class="card" src="https://www.youtube.com/"></iframe>
