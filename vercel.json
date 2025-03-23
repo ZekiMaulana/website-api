@@ -1,4 +1,4 @@
 { 
     "version": 2, 
-    "builds": [{"src": "index.js", "use": "@vercel/node"}], 
-    "rewrites": [{ "source": "/(.*)", "destination": "index.js" }] }
+    "builds": [{"src": "server.js", "use": "@vercel/node"}], 
+    "rewrites": [{ "source": "/(.*)", "destination": "server.js" }] }
