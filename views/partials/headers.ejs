@@ -87,8 +87,11 @@
         </div>
 
         <div class="navright">
-            <form class="menu">
+            <form action="/search/top">
+                <input type="text" name="filter" hidden value="airing">
+                <input type="text" name="page" hidden value="1">
             <input class="search" type="text" name="search" placeholder="Search">
+            <input type="submit" hidden>
             </form>
         </div>
 
