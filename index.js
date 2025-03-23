@@ -8,7 +8,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 8080;
 const API_URL = "https://api.jikan.moe/v4/"
 
 app.use(express.static("public"))
@@ -40,7 +40,7 @@ const resultChar = readJson("topCharacters")
 
 // Use Public Api
 // const resultChar = await axios.get(API_URL + "top/characters")             
-const seasonsList = await axios.get(API_URL + "seasons")
+
 
 
 
@@ -106,6 +106,7 @@ app.get("/anime", async (req, res) => {
 });
 
 app.get("/category", async (req, res) => {
+    try {
     switch(req.query.type){
         case "genre":
             try {
@@ -144,7 +145,7 @@ app.get("/category", async (req, res) => {
             break;
         case "release-year":
             try {
-                
+                const seasonsList = await axios.get(API_URL + "seasons")
                 res.render("category.ejs", {years: seasonsList.data, characters: resultChar})
             } catch(error) {
                 console.error("Failed to make request:", error.message);
@@ -160,6 +161,18 @@ app.get("/category", async (req, res) => {
             break;
         default:
             break;
+            
+    }
+    }catch (error) {
+        console.error("Failed to make request:", error.message);
+                console.error(error.status);
+                var message = ""
+                if (error.status === 429){
+                    message = "Wait a minute, Too much Request";
+                } else if(error.status === 400){
+                    message = "Technical Error, This Page Cannot be Accessed "
+                }
+                res.render("error.ejs", { error: message });
     }
 });
 
