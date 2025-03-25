@@ -8,7 +8,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = 3000;
 const API_URL = "https://api.jikan.moe/v4/"
 
 app.use(express.static("public"))
