@@ -5,7 +5,6 @@
   <% const topAired = content.data %>
   
   <% const topAiredMovie = movie.data %>
-  <% const topAnime = top.data %>
   <% const topUpcoming = upcoming.data %>
 
   <% const ranTop = [topAired, topUpcoming] %>
@@ -107,42 +106,6 @@
    <% } %>
    <div class="text-title" style="text-align: right;">
     <a href="/search/top?type=movie&page=1" class="button-featured">View More</a>
-    </div>
-    
-   <div class="text-title"><hr /></div>
-
-   <div class="text-title title-featured"><h2>Top Anime</h2></div>
-
-  
-   <% var b=7;  var title = ""; for(var i=0; i<b; i++){ %>
-    <% if(topAnime[i].title !== title){%>
-
-    <div class="card-film">
-      <a href="/anime?animeId=<%= topAnime[i].mal_id %>" style="color: black;">
-      <div class="card-img">
-      <img class="card" src=<%= topAnime[i].images.jpg.large_image_url %>>
-      <div class="text1"><%= topAnime[i].type %></div>
-      <div class="centered"><%= topAnime[i].synopsis %></div>
-      <div class="text2">✩ <%= topAnime[i].score %></div>
-      <% if(topAnime[i].rating){ %><% var rating = topAnime[i].rating.split(" ")[0]; %>
-      <% if(rating === "Rx"){ %>
-        <div class="text3" style="background-color: red;"><%= rating %></div>
-      <% } else if(rating === "R"){ %>
-        <div class="text3" style="background-color: orange;"><%= rating %></div>
-      <% } else { %>
-        <div class="text3" style="background-color: green;"><%= rating %></div>
-    <% }} %>
-
-      </div>
-      <% var title_name = topAnime[i].title %>
-      <h4><%= title_name %></h4>
-      </a>
-      <p><%= topAnime[i].aired.prop.from.day %> <% var month = topAnime[i].aired.string.split(" ")[0] %><%= month %> <%= topAnime[i].aired.prop.from.year %></p>
-    </div>
-    <% } else { b++ } title = topAnime[i].title; %>
-   <% } %>
-   <div class="text-title" style="text-align: right;">
-    <a href="/search/top&page=1" class="button-featured">View More</a>
     </div>
     
     <div class="text-title"><hr /></div>

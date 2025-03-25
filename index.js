@@ -58,19 +58,13 @@ app.get("/", async (req, res) => {
 
         const paramsTopUpcoming = { filter: "upcoming"};
         const resultTopUpcoming = await axios.get(API_URL + "top/anime", {params: paramsTopUpcoming});
-
-        
-        const resultTopAnime = await axios.get(API_URL + "top/anime");
         
         res.render("index.ejs", {
             content: resultTopAired.data,  
             characters: resultChar, 
             movie: resultTopAiredMovie.data, 
-            top: resultTopAnime.data, 
             upcoming: resultTopUpcoming.data});
-
-        
-              
+    
 
     } catch (error) {
         console.error("Failed to make request:", error.message);
