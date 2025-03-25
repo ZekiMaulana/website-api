@@ -53,16 +53,12 @@ app.get("/", async (req, res) => {
         const paramsTopAired = { filter: "airing", type: "tv"};
         const resultTopAired = await axios.get(API_URL + "top/anime", {params: paramsTopAired});
 
-        const paramsTopAiredMovie = { type: "movie"};
-        const resultTopAiredMovie = await axios.get(API_URL + "top/anime", {params: paramsTopAiredMovie});
-
         const paramsTopUpcoming = { filter: "upcoming"};
         const resultTopUpcoming = await axios.get(API_URL + "top/anime", {params: paramsTopUpcoming});
         
         res.render("index.ejs", {
             content: resultTopAired.data,  
-            characters: resultChar, 
-            movie: resultTopAiredMovie.data, 
+            characters: resultChar,
             upcoming: resultTopUpcoming.data});
     
 
